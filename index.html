@@ -1,0 +1,2760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tamilselvam Jeyaraman | Junior Data Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* =========================================================
+   Tamilselvam Jeyaraman | Junior Data Engineer — style.css
+   ========================================================= */
+
+/* ─── CSS VARIABLES ─── */
+:root {
+  --navy:    #0a0f2c;
+  --navy2:   #0d1540;
+  --blue:    #1a2a6c;
+  --accent:  #00c6ff;
+  --accent2: #0072ff;
+  --gold:    #f5c842;
+  --white:   #f0f4ff;
+  --muted:   #8899bb;
+  --card:    rgba(255,255,255,0.04);
+  --border:  rgba(0,198,255,0.18);
+  --green:   #00e676;
+  --orange:  #ff9800;
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--navy); color: var(--white); font-family: 'Sora', sans-serif; overflow-x: hidden; }
+
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 0%, rgba(0,114,255,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 100%, rgba(0,198,255,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(26,42,108,0.4) 0%, transparent 80%);
+  pointer-events: none;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 5vw;
+  background: rgba(10,15,44,0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  gap: 1rem;
+}
+.nav-logo { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 500; color: var(--accent); letter-spacing: 0.08em; }
+.nav-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.25s; }
+.nav-links a:hover { color: var(--accent); }
+
+/* ─── BUTTONS ─── */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.8rem; border-radius: 6px;
+  font-family: 'Sora', sans-serif; font-size: 0.85rem; font-weight: 700;
+  letter-spacing: 0.05em; cursor: pointer; text-decoration: none; transition: all 0.25s;
+}
+.btn-primary { background: linear-gradient(135deg, var(--accent2), var(--accent)); color: #fff; border: none; box-shadow: 0 4px 24px rgba(0,198,255,0.3); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,198,255,0.45); }
+.btn-outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+.btn-outline:hover { background: rgba(0,198,255,0.08); transform: translateY(-2px); }
+.btn-sm { padding: 0.6rem 1.4rem; font-size: 0.82rem; }
+
+/* ─── HERO ─── */
+.hero { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 10rem 5vw 6rem; }
+.hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.7rem; }
+.hero-tag::before { content: ''; display: inline-block; width: 32px; height: 2px; background: var(--accent); }
+h1.hero-name { font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; background: linear-gradient(135deg, #ffffff 0%, #b8d4ff 60%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; }
+.hero-subtitle { font-size: clamp(1rem, 2.5vw, 1.3rem); color: var(--muted); font-weight: 400; max-width: 600px; line-height: 1.7; margin-bottom: 2.5rem; }
+.hero-subtitle span { color: var(--accent); font-weight: 600; }
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-grid { position: absolute; right: 3vw; top: 50%; transform: translateY(-50%); opacity: 0.07; pointer-events: none; display: grid; grid-template-columns: repeat(8,1fr); gap: 14px; }
+.hero-grid span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 3s ease-in-out infinite; }
+.hero-grid span:nth-child(odd) { animation-delay: 1.2s; }
+
+/* ─── SECTIONS ─── */
+section { position: relative; z-index: 1; padding: 6rem 5vw; }
+.section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.6rem; }
+.section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--accent); opacity: 0.5; }
+h2.section-title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 800; letter-spacing: -0.01em; color: var(--white); margin-bottom: 3rem; }
+.divider { border: none; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0 5vw; }
+
+/* ─── ABOUT ─── */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+.about-text p { color: var(--muted); line-height: 1.85; font-size: 0.97rem; margin-bottom: 1.2rem; }
+.about-text p strong { color: var(--white); }
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.4rem; text-align: center; transition: border-color 0.3s, transform 0.3s; }
+.stat-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+.stat-num { font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, var(--accent2), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; margin-bottom: 0.3rem; }
+.stat-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em; }
+
+/* ─── TECH ICONS STRIP ─── */
+#tech-icons { background: rgba(13,21,64,0.4); padding: 3rem 5vw; }
+.tech-strip-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; text-align: center; margin-bottom: 2rem; }
+.tech-icons-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.4rem; }
+.tech-icon-card {
+  display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.2rem 1rem; min-width: 80px;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  cursor: default;
+}
+.tech-icon-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,198,255,0.15); }
+.tech-icon-card svg, .tech-icon-card .tech-emoji { display: block; }
+.tech-emoji { font-size: 2rem; line-height: 1; }
+.tech-name { font-size: 0.68rem; font-weight: 700; color: var(--muted); letter-spacing: 0.05em; text-align: center; font-family: 'JetBrains Mono', monospace; }
+
+/* ─── ROADMAP ─── */
+#roadmap { background: rgba(13,21,64,0.5); }
+.roadmap-intro { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 700px; margin-bottom: 3rem; }
+.roadmap-intro strong { color: var(--accent); }
+.roadmap-phases { display: flex; flex-direction: column; gap: 0; position: relative; }
+.roadmap-phases::before { content: ''; position: absolute; left: 1.75rem; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--accent2), var(--accent), var(--green)); }
+.roadmap-phase { display: flex; gap: 2rem; margin-bottom: 2.5rem; position: relative; }
+.phase-dot { flex-shrink: 0; width: 3.5rem; height: 3.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; z-index: 1; border: 2px solid var(--accent); box-shadow: 0 0 16px rgba(0,198,255,0.3); }
+.phase-dot.phase-1 { background: rgba(0,114,255,0.2); border-color: var(--accent2); }
+.phase-dot.phase-2 { background: rgba(0,198,255,0.2); border-color: var(--accent); }
+.phase-dot.phase-3 { background: rgba(0,230,118,0.2); border-color: var(--green); box-shadow: 0 0 16px rgba(0,230,118,0.3); }
+.phase-content { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.6rem; transition: border-color 0.3s; }
+.phase-content:hover { border-color: var(--accent); }
+.phase-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.6rem; }
+.phase-title { font-size: 1.05rem; font-weight: 800; color: var(--white); }
+.phase-days { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); background: rgba(0,198,255,0.1); border: 1px solid rgba(0,198,255,0.2); padding: 0.22rem 0.7rem; border-radius: 20px; }
+.phase-days.green { color: var(--green); background: rgba(0,230,118,0.1); border-color: rgba(0,230,118,0.25); }
+.phase-subtitle { font-size: 0.82rem; color: var(--accent); font-weight: 600; margin-bottom: 1rem; }
+
+/* progress bar */
+.phase-progress-wrap { margin-bottom: 1.1rem; }
+.phase-progress-label { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted); margin-bottom: 0.4rem; font-family: 'JetBrains Mono', monospace; }
+.phase-progress-bar { height: 6px; background: rgba(255,255,255,0.07); border-radius: 10px; overflow: hidden; }
+.phase-progress-fill { height: 100%; border-radius: 10px; transition: width 1s ease; }
+.phase-progress-fill.blue  { background: linear-gradient(90deg, var(--accent2), var(--accent)); }
+.phase-progress-fill.cyan  { background: linear-gradient(90deg, var(--accent), #00e5ff); }
+.phase-progress-fill.green { background: linear-gradient(90deg, #00b248, var(--green)); }
+
+/* current status badge */
+.phase-status {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.7rem; font-weight: 700; padding: 0.22rem 0.7rem;
+  border-radius: 20px; margin-bottom: 1rem; font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.04em;
+}
+.phase-status.active   { background: rgba(0,230,118,0.12); border: 1px solid rgba(0,230,118,0.3); color: var(--green); }
+.phase-status.done     { background: rgba(0,198,255,0.1); border: 1px solid rgba(0,198,255,0.25); color: var(--accent); }
+.phase-status.upcoming { background: rgba(245,200,66,0.1); border: 1px solid rgba(245,200,66,0.25); color: var(--gold); }
+.phase-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+/* weekly task accordion */
+.phase-weeks { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+.week-block { border: 1px solid var(--border); border-radius: 9px; overflow: hidden; }
+.week-toggle {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 0.65rem 1rem; background: rgba(255,255,255,0.03);
+  cursor: pointer; border: none; color: var(--white); font-family: 'Sora', sans-serif;
+  font-size: 0.83rem; font-weight: 700; text-align: left; transition: background 0.2s; gap: 0.5rem;
+}
+.week-toggle:hover { background: rgba(0,198,255,0.07); }
+.week-toggle .week-label { flex: 1; }
+.week-toggle .week-status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.week-toggle .week-status-dot.done      { background: var(--accent); box-shadow: 0 0 6px rgba(0,198,255,0.6); }
+.week-toggle .week-status-dot.in-progress { background: var(--green); box-shadow: 0 0 6px rgba(0,230,118,0.6); animation: pulse 1.5s ease-in-out infinite; }
+.week-toggle .week-status-dot.upcoming  { background: rgba(255,255,255,0.2); }
+.week-toggle .week-chevron { font-size: 0.65rem; color: var(--muted); transition: transform 0.25s; flex-shrink: 0; }
+.week-block.open .week-chevron { transform: rotate(180deg); }
+.week-tasks { display: none; padding: 0.7rem 1rem 0.9rem; border-top: 1px solid var(--border); }
+.week-block.open .week-tasks { display: block; }
+.week-tasks ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+.week-tasks ul li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.82rem; color: var(--muted); }
+.week-tasks ul li .task-check { font-size: 0.8rem; flex-shrink: 0; margin-top: 0.05rem; }
+.week-tasks ul li.done-task { color: rgba(0,198,255,0.65); text-decoration: line-through; }
+.week-tasks ul li.active-task { color: var(--white); font-weight: 600; }
+.week-tasks ul li.active-task .task-check { color: var(--green); }
+
+.phase-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+.phase-tag { background: rgba(0,198,255,0.07); border: 1px solid rgba(0,198,255,0.18); color: var(--accent); border-radius: 4px; padding: 0.18rem 0.6rem; font-size: 0.7rem; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.phase-tag.gold  { background: rgba(245,200,66,0.1); border-color: rgba(245,200,66,0.25); color: var(--gold); }
+.phase-tag.green { background: rgba(0,230,118,0.1); border-color: rgba(0,230,118,0.25); color: var(--green); }
+.roadmap-goal { background: linear-gradient(135deg, rgba(0,114,255,0.12), rgba(0,198,255,0.08)); border: 1px solid rgba(0,198,255,0.3); border-radius: 14px; padding: 1.8rem; margin-top: 1rem; text-align: center; }
+.roadmap-goal-title { font-size: 1.1rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem; }
+.roadmap-goal-text { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+
+/* ─── SKILLS ─── */
+#skills { background: rgba(13,21,64,0.5); }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+.skill-group { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: border-color 0.3s, transform 0.3s; }
+.skill-group:hover { border-color: var(--accent); transform: translateY(-4px); }
+.skill-group-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.skill-group-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+.skill-group-actions { display: flex; gap: 0.4rem; }
+.skill-group-btn { display: flex; align-items: center; gap: 0.3rem; padding: 0.25rem 0.6rem; border-radius: 4px; font-family: 'Sora', sans-serif; font-size: 0.68rem; font-weight: 600; cursor: pointer; transition: all 0.18s; }
+.skill-group-edit { border: 1px solid rgba(0,198,255,0.22); background: rgba(0,198,255,0.06); color: var(--accent); }
+.skill-group-edit:hover { background: rgba(0,198,255,0.15); border-color: var(--accent); }
+.skill-group-delete { border: 1px solid rgba(255,255,255,0.08); background: transparent; color: var(--muted); }
+.skill-group-delete:hover { background: rgba(255,60,60,0.12); border-color: rgba(255,80,80,0.4); color: #ff6b6b; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.skill-tag { display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(0,198,255,0.08); border: 1px solid rgba(0,198,255,0.2); color: var(--white); border-radius: 5px; padding: 0.28rem 0.55rem 0.28rem 0.75rem; font-size: 0.78rem; font-weight: 500; transition: background 0.2s; }
+.skill-tag:hover { background: rgba(0,198,255,0.18); }
+.skill-tag-remove { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; border-radius: 50%; background: rgba(255,100,100,0.15); border: none; color: #ff8080; font-size: 0.65rem; cursor: pointer; transition: background 0.2s; padding: 0; line-height: 1; }
+.skill-tag-remove:hover { background: rgba(255,60,60,0.4); color: #fff; }
+.skill-add-tag { display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(0,198,255,0.04); border: 1px dashed rgba(0,198,255,0.25); color: var(--muted); border-radius: 5px; padding: 0.25rem 0.65rem; font-size: 0.74rem; cursor: pointer; transition: all 0.2s; font-family: 'Sora', sans-serif; font-weight: 500; }
+.skill-add-tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,198,255,0.08); }
+
+/* ─── EXPERIENCE ─── */
+.exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
+.exp-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.8rem; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; }
+.exp-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--accent2), var(--accent)); opacity: 0; transition: opacity 0.3s; }
+.exp-card:hover { border-color: var(--accent); transform: translateX(4px); box-shadow: 0 8px 32px rgba(0,198,255,0.1); }
+.exp-card:hover::before { opacity: 1; }
+.exp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+.exp-role { font-size: 1.05rem; font-weight: 700; color: var(--white); }
+.exp-period { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; background: rgba(0,198,255,0.08); border: 1px solid rgba(0,198,255,0.2); padding: 0.25rem 0.7rem; border-radius: 20px; white-space: nowrap; }
+.exp-company { font-size: 0.88rem; color: var(--accent); font-weight: 600; margin-bottom: 0.7rem; }
+.exp-desc { color: var(--muted); font-size: 0.87rem; line-height: 1.75; }
+.exp-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+.exp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.exp-tag { background: rgba(0,198,255,0.07); border: 1px solid rgba(0,198,255,0.18); color: var(--muted); border-radius: 4px; padding: 0.18rem 0.6rem; font-size: 0.72rem; font-weight: 500; font-family: 'JetBrains Mono', monospace; }
+
+/* ─── PROJECTS ─── */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.8rem; }
+.project-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.8rem; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; }
+.project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent2), var(--accent)); opacity: 0; transition: opacity 0.3s; }
+.project-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,198,255,0.12); }
+.project-card:hover::before { opacity: 1; }
+.project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.8rem; }
+.project-icon { font-size: 1.8rem; }
+.project-links { display: flex; gap: 0.6rem; }
+.project-link { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 6px; background: rgba(0,198,255,0.1); border: 1px solid var(--border); color: var(--accent); text-decoration: none; transition: background 0.2s, transform 0.2s; }
+.project-link:hover { background: rgba(0,198,255,0.25); transform: scale(1.1); }
+.project-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; }
+.project-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.7; flex: 1; margin-bottom: 1.2rem; }
+.project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.stack-tag { background: rgba(245,200,66,0.1); border: 1px solid rgba(245,200,66,0.25); color: var(--gold); border-radius: 4px; padding: 0.2rem 0.6rem; font-size: 0.72rem; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+
+/* ─── EDUCATION ─── */
+.edu-timeline { position: relative; padding-left: 2rem; }
+.edu-timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--accent), transparent); }
+.edu-item { position: relative; margin-bottom: 2.4rem; }
+.edu-item::before { content: ''; position: absolute; left: -2.38rem; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--navy); box-shadow: 0 0 10px rgba(0,198,255,0.5); }
+.edu-period { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+.edu-degree { font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
+.edu-school { color: var(--muted); font-size: 0.88rem; }
+
+/* ─── CERTIFICATIONS ─── */
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.2rem; margin-top: 2.5rem; }
+.cert-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+  transition: border-color 0.3s, transform 0.3s;
+  display: flex; flex-direction: column;
+}
+.cert-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.cert-body { padding: 1.2rem 1.3rem 1.3rem; display: flex; flex-direction: column; flex: 1; }
+.cert-top { display: flex; align-items: flex-start; gap: 0.9rem; margin-bottom: 0.6rem; }
+.cert-emoji { font-size: 2rem; flex-shrink: 0; line-height: 1; margin-top: 0.1rem; }
+.cert-info { flex: 1; }
+.cert-name { font-size: 0.9rem; font-weight: 700; color: var(--white); line-height: 1.3; margin-bottom: 0.2rem; }
+.cert-issuer { font-size: 0.75rem; color: var(--muted); }
+.cert-meta-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem; }
+.cert-date { font-size: 0.7rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+.cert-has-file { font-size: 0.68rem; background: rgba(0,230,118,0.1); border: 1px solid rgba(0,230,118,0.25); color: var(--green); border-radius: 4px; padding: 0.15rem 0.55rem; font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+.cert-bottom { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.9rem; flex-wrap: wrap; }
+.cert-view-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.73rem; font-weight: 700; color: var(--accent);
+  background: rgba(0,198,255,0.06); border: 1px solid rgba(0,198,255,0.22);
+  border-radius: 6px; padding: 0.32rem 0.85rem;
+  cursor: pointer; transition: all 0.18s; font-family: 'Sora', sans-serif;
+  white-space: nowrap; line-height: 1;
+}
+.cert-view-btn:hover { background: rgba(0,198,255,0.15); border-color: var(--accent); }
+.cert-actions { display: flex; gap: 0.4rem; align-items: center; }
+
+/* ─── CERT LIGHTBOX ─── */
+.cert-lightbox {
+  display: none; position: fixed; inset: 0; z-index: 600;
+  background: rgba(5,8,24,0.95); backdrop-filter: blur(14px);
+  align-items: center; justify-content: center; padding: 1.5rem;
+}
+.cert-lightbox.active { display: flex; }
+.cert-lightbox-box {
+  background: #0d1540; border: 1px solid var(--border); border-radius: 18px;
+  width: min(680px, 96vw); max-height: 92vh; overflow-y: auto;
+  animation: slideUp 0.3s ease; padding: 2rem;
+}
+.cert-lb-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+.cert-lb-title { font-size: 1.1rem; font-weight: 800; color: var(--white); line-height: 1.3; }
+.cert-lb-close {
+  flex-shrink: 0; width: 34px; height: 34px; border-radius: 8px;
+  background: rgba(255,255,255,0.07); border: 1px solid var(--border);
+  color: var(--muted); display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 1rem; transition: all 0.2s;
+}
+.cert-lb-close:hover { color: var(--white); border-color: var(--accent); }
+.cert-lb-img { width: 100%; border-radius: 10px; border: 1px solid var(--border); display: block; margin-bottom: 1.4rem; }
+.cert-lb-pdf { width: 100%; height: 460px; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 1.4rem; }
+.cert-lb-no-file { text-align: center; padding: 3rem 1rem; color: var(--muted); }
+.cert-lb-no-file span { font-size: 2.8rem; display: block; margin-bottom: 0.8rem; }
+.cert-lb-details { display: flex; flex-direction: column; gap: 0.6rem; padding: 1.2rem; background: rgba(255,255,255,0.03); border-radius: 10px; border: 1px solid var(--border); }
+.cert-lb-row { display: flex; gap: 0.8rem; align-items: baseline; font-size: 0.85rem; }
+.cert-lb-label { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; min-width: 80px; text-transform: uppercase; }
+.cert-lb-val { color: var(--white); font-weight: 600; }
+.cert-lb-actions { display: flex; gap: 0.8rem; margin-top: 1.2rem; flex-wrap: wrap; }
+.cert-lb-open-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.5rem; border-radius: 7px;
+  background: linear-gradient(135deg, var(--accent2), var(--accent));
+  color: #fff; font-weight: 700; font-size: 0.84rem; text-decoration: none;
+  transition: all 0.2s;
+}
+.cert-lb-open-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,198,255,0.35); }
+
+/* cert upload drop zone */
+.cert-upload-zone {
+  border: 2px dashed rgba(0,198,255,0.3); border-radius: 10px;
+  padding: 1.5rem; text-align: center; cursor: pointer;
+  transition: all 0.25s; background: rgba(0,198,255,0.02); margin-top: 0.8rem;
+}
+.cert-upload-zone:hover, .cert-upload-zone.drag-over { border-color: var(--accent); background: rgba(0,198,255,0.07); }
+.cert-upload-zone p { font-size: 0.78rem; color: var(--muted); margin-top: 0.4rem; }
+.cert-upload-zone .upload-icon { font-size: 1.8rem; display: block; }
+.cert-upload-zone input[type="file"] { display: none; }
+
+.modal-upload-preview { margin-top: 0.8rem; width: 100%; max-height: 120px; object-fit: contain; border-radius: 6px; display: none; }
+.modal-upload-filename { font-size: 0.72rem; color: var(--accent); margin-top: 0.4rem; display: none; }
+
+/* ─── ADD / EDIT BUTTONS ─── */
+.add-project-btn {
+  display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-top: 2.5rem;
+  padding: 0.9rem 2rem; border-radius: 8px; background: rgba(0,198,255,0.06);
+  border: 1.5px dashed rgba(0,198,255,0.35); color: var(--accent);
+  font-family: 'Sora', sans-serif; font-size: 0.85rem; font-weight: 600; cursor: pointer;
+  transition: all 0.25s; width: fit-content;
+}
+.add-project-btn:hover { background: rgba(0,198,255,0.12); border-color: var(--accent); }
+.card-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; }
+.remove-exp-btn, .edit-exp-btn, .edit-project-btn, .edit-cert-btn,
+.remove-project-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.32rem 0.85rem; border-radius: 6px;
+  font-family: 'Sora', sans-serif; font-size: 0.73rem; font-weight: 600;
+  cursor: pointer; transition: all 0.18s; line-height: 1;
+  white-space: nowrap;
+}
+/* Edit button — subtle blue */
+.edit-exp-btn, .edit-project-btn, .edit-cert-btn {
+  border: 1px solid rgba(0,198,255,0.22);
+  background: rgba(0,198,255,0.06);
+  color: var(--accent);
+}
+.edit-exp-btn:hover, .edit-project-btn:hover, .edit-cert-btn:hover {
+  background: rgba(0,198,255,0.15); border-color: var(--accent);
+}
+/* Remove button — plain text style, red only on hover */
+.remove-exp-btn, .remove-project-btn {
+  border: 1px solid rgba(255,255,255,0.08);
+  background: transparent;
+  color: var(--muted);
+}
+.remove-exp-btn:hover, .remove-project-btn:hover {
+  background: rgba(255,60,60,0.12);
+  border-color: rgba(255,80,80,0.4);
+  color: #ff6b6b;
+}
+
+/* ─── MODALS ─── */
+.modal-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(5,8,24,0.88); backdrop-filter: blur(8px); align-items: center; justify-content: center; }
+.modal-overlay.active { display: flex; }
+.modal { background: #0d1540; border: 1px solid var(--border); border-radius: 16px; padding: 2.4rem; width: min(560px, 92vw); animation: slideUp 0.3s ease; max-height: 90vh; overflow-y: auto; }
+.modal-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 1.8rem; }
+.form-group { margin-bottom: 1.2rem; }
+.form-group label { display: block; font-size: 0.78rem; color: var(--muted); font-weight: 600; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+.form-group input, .form-group textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 7px; color: var(--white); font-family: 'Sora', sans-serif; font-size: 0.88rem; padding: 0.75rem 1rem; outline: none; transition: border-color 0.2s; }
+.form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+.form-group textarea { resize: vertical; min-height: 90px; }
+.modal-actions { display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.8rem; }
+
+/* modal file upload area */
+.modal-upload-zone {
+  border: 2px dashed rgba(0,198,255,0.3); border-radius: 8px;
+  padding: 1.2rem; text-align: center; cursor: pointer; transition: all 0.25s;
+  background: rgba(0,198,255,0.02);
+}
+.modal-upload-zone:hover { border-color: var(--accent); background: rgba(0,198,255,0.07); }
+.modal-upload-zone p { font-size: 0.75rem; color: var(--muted); }
+.modal-upload-preview { margin-top: 0.8rem; width: 100%; max-height: 120px; object-fit: contain; border-radius: 6px; display: none; }
+.modal-upload-filename { font-size: 0.72rem; color: var(--accent); margin-top: 0.4rem; display: none; }
+
+/* ─── CONTACT / FOOTER ─── */
+#contact { background: rgba(13,21,64,0.5); text-align: center; }
+.contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem; }
+.contact-chip { display: flex; align-items: center; gap: 0.6rem; padding: 0.7rem 1.4rem; border-radius: 50px; background: var(--card); border: 1px solid var(--border); color: var(--white); text-decoration: none; font-size: 0.84rem; font-weight: 500; transition: all 0.25s; }
+.contact-chip:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+footer { text-align: center; padding: 1.8rem 5vw; color: var(--muted); font-size: 0.78rem; border-top: 1px solid var(--border); position: relative; z-index: 1; }
+
+/* ─── SCROLL REVEAL ─── */
+.reveal { opacity: 1; transform: none; transition: opacity 0.6s ease, transform 0.6s ease; }
+.js-ready .reveal { opacity: 0; transform: translateY(28px); }
+.js-ready .reveal.visible { opacity: 1; transform: none; }
+
+/* ─── ADMIN LOGIN ─── */
+.admin-overlay { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(5,8,24,0.92); backdrop-filter: blur(12px); align-items: center; justify-content: center; }
+.admin-overlay.active { display: flex; }
+.admin-box { background: #0d1540; border: 1px solid var(--border); border-radius: 18px; padding: 2.8rem 2.4rem; width: min(420px, 92vw); text-align: center; animation: slideUp 0.3s ease; box-shadow: 0 24px 64px rgba(0,0,0,0.5); }
+.admin-icon { font-size: 2.4rem; margin-bottom: 1rem; }
+.admin-title { font-size: 1.25rem; font-weight: 800; color: var(--white); margin-bottom: 0.4rem; }
+.admin-subtitle { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.8rem; }
+.admin-input-wrap { position: relative; margin-bottom: 1rem; }
+.admin-input { width: 100%; background: rgba(255,255,255,0.05); border: 1.5px solid var(--border); border-radius: 8px; color: var(--white); font-family: 'Sora', sans-serif; font-size: 1rem; padding: 0.85rem 3rem 0.85rem 1.1rem; outline: none; transition: border-color 0.2s; letter-spacing: 0.1em; text-align: center; }
+.admin-input:focus { border-color: var(--accent); }
+.admin-input.error { border-color: #ff6b6b; animation: shake 0.35s ease; }
+.admin-eye { position: absolute; right: 0.9rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--muted); cursor: pointer; padding: 0; display: flex; align-items: center; }
+.admin-eye:hover { color: var(--accent); }
+.admin-error { font-size: 0.78rem; color: #ff6b6b; margin-bottom: 1rem; min-height: 1.1rem; font-weight: 600; }
+.admin-login-btn { width: 100%; padding: 0.85rem; background: linear-gradient(135deg, var(--accent2), var(--accent)); border: none; border-radius: 8px; color: #fff; font-family: 'Sora', sans-serif; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.25s; box-shadow: 0 4px 20px rgba(0,198,255,0.3); }
+.admin-login-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,198,255,0.45); }
+.admin-cancel { margin-top: 0.9rem; font-size: 0.78rem; color: var(--muted); background: none; border: none; cursor: pointer; font-family: 'Sora', sans-serif; transition: color 0.2s; }
+.admin-cancel:hover { color: var(--white); }
+
+/* ─── EDIT MODE ─── */
+.edit-mode-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.45rem 1rem; border-radius: 6px; font-family: 'Sora', sans-serif; font-size: 0.78rem; font-weight: 700; cursor: pointer; transition: all 0.25s; border: 1.5px solid rgba(0,198,255,0.35); background: rgba(0,198,255,0.06); color: var(--muted); white-space: nowrap; }
+.save-file-btn { display: none; align-items: center; gap: 0.5rem; padding: 0.45rem 1rem; border-radius: 6px; font-family: 'Sora', sans-serif; font-size: 0.78rem; font-weight: 700; cursor: pointer; transition: all 0.25s; border: 1.5px solid rgba(0,230,118,0.5); background: rgba(0,230,118,0.1); color: var(--green); white-space: nowrap; }
+.save-file-btn:hover { background: rgba(0,230,118,0.2); border-color: var(--green); }
+body.edit-mode .save-file-btn { display: flex; }
+.edit-mode-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,198,255,0.12); }
+.edit-mode-btn.active { background: rgba(0,198,255,0.18); border-color: var(--accent); color: var(--accent); }
+.conn-badge { position: fixed; bottom: 4rem; right: 1.5rem; z-index: 300; font-size: 0.68rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'JetBrains Mono', monospace; }
+.conn-badge.server  { background: rgba(0,230,118,0.15); border: 1px solid rgba(0,230,118,0.4); color: var(--green); display: block !important; }
+.conn-badge.offline { background: rgba(245,200,66,0.12); border: 1px solid rgba(245,200,66,0.35); color: var(--gold); display: block !important; }
+.edit-mode-badge { display: none; position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 300; background: linear-gradient(135deg, var(--accent2), var(--accent)); color: #fff; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.45rem 1rem; border-radius: 20px; box-shadow: 0 4px 16px rgba(0,198,255,0.4); animation: pulse 2s ease-in-out infinite; }
+body.edit-mode .conn-badge { position: fixed; bottom: 4rem; right: 1.5rem; z-index: 300; font-size: 0.68rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 20px; font-family: 'JetBrains Mono', monospace; }
+.conn-badge.server  { background: rgba(0,230,118,0.15); border: 1px solid rgba(0,230,118,0.4); color: var(--green); display: block !important; }
+.conn-badge.offline { background: rgba(245,200,66,0.12); border: 1px solid rgba(245,200,66,0.35); color: var(--gold); display: block !important; }
+.edit-mode-badge { display: none; }
+
+/* ─── HIDE EDIT CONTROLS BY DEFAULT ─── */
+/* Individual action buttons - hidden by default */
+.edit-exp-btn,
+.remove-exp-btn,
+.edit-project-btn,
+.remove-project-btn,
+.edit-cert-btn { display: none !important; }
+
+/* Card action groups */
+.card-actions { display: none !important; }
+.cert-actions { display: none !important; }
+.skill-group-actions { display: none !important; }
+.skill-tag-remove { display: none !important; }
+.skill-add-tag { display: none !important; }
+.add-project-btn { display: none !important; }
+.save-file-btn { display: none !important; }
+
+/* ── EDIT MODE: show everything ── */
+body.edit-mode .edit-exp-btn      { display: inline-flex !important; }
+body.edit-mode .remove-exp-btn    { display: inline-flex !important; }
+body.edit-mode .edit-project-btn  { display: inline-flex !important; }
+body.edit-mode .remove-project-btn{ display: inline-flex !important; }
+body.edit-mode .edit-cert-btn     { display: inline-flex !important; }
+body.edit-mode .card-actions      { display: flex !important; flex-wrap: wrap; gap: 0.4rem; }
+body.edit-mode .cert-actions      { display: flex !important; }
+body.edit-mode .skill-group-actions { display: flex !important; }
+body.edit-mode .skill-tag-remove  { display: inline-flex !important; }
+body.edit-mode .skill-add-tag     { display: inline-flex !important; }
+body.edit-mode .add-project-btn   { display: flex !important; }
+body.edit-mode .save-file-btn     { display: flex !important; }
+
+
+/* ─── ROADMAP TAGLINE ─── */
+.roadmap-tagline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 0.6rem;
+  background: linear-gradient(135deg, var(--accent2), var(--accent), var(--green));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── TASK CLICK BUTTON ─── */
+.week-tasks ul li {
+  display: flex; align-items: flex-start; gap: 0.7rem;
+  padding: 0.45rem 0.6rem; border-radius: 7px;
+  cursor: default; transition: background 0.15s;
+  user-select: none;
+}
+.task-btn {
+  flex-shrink: 0; width: 22px; height: 22px;
+  border-radius: 6px; border: 1.5px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.05);
+  font-size: 0.85rem; cursor: pointer; display: none !important;
+  align-items: center; justify-content: center;
+  transition: all 0.15s; padding: 0; line-height: 1;
+  margin-top: 0.05rem;
+}
+.task-text { flex: 1; font-size: 0.82rem; color: var(--muted); line-height: 1.45; }
+/* Edit mode — show task buttons and enable hover */
+body.edit-mode .task-btn { display: flex !important; }
+body.edit-mode .week-tasks ul li { cursor: pointer; }
+body.edit-mode .week-tasks ul li:hover { background: rgba(255,255,255,0.04); }
+body.edit-mode .task-btn:hover { border-color: var(--accent); background: rgba(0,198,255,0.1); transform: scale(1.1); }
+
+/* done state */
+li.done-task .task-btn { background: rgba(0,198,255,0.15); border-color: var(--accent); }
+li.done-task .task-text { color: rgba(0,198,255,0.5); text-decoration: line-through; }
+
+/* active/in-progress state */
+li.active-task .task-btn { background: rgba(0,230,118,0.15); border-color: var(--green); }
+li.active-task .task-text { color: var(--white); font-weight: 600; }
+
+/* pending state */
+li:not(.done-task):not(.active-task) .task-text { color: var(--muted); }
+
+
+/* ─── 90-DAY TRACKER (inline compact) ─── */
+.roadmap-tracker {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.4rem 1.6rem;
+  margin-bottom: 2.5rem;
+}
+.tracker-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;
+}
+.tracker-title {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  font-weight: 700; color: var(--accent); letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.tracker-meta { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+.tracker-count {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted);
+}
+.tracker-count span { color: var(--accent); font-weight: 700; }
+.tracker-legend { display: flex; gap: 0.8rem; }
+.legend-item { display: flex; align-items: center; gap: 0.3rem; font-size: 0.64rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+.legend-dot { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+.legend-dot.done    { background: rgba(0,198,255,0.3); border: 1px solid var(--accent); }
+.legend-dot.active  { background: rgba(0,230,118,0.35); border: 1px solid var(--green); }
+.legend-dot.pending { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); }
+.tracker-grid {
+  display: flex; flex-wrap: wrap; gap: 4px;
+}
+.day-dot {
+  width: 18px; height: 18px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  cursor: default; position: relative;
+  transition: transform 0.12s, box-shadow 0.12s;
+  flex-shrink: 0;
+}
+.day-dot:hover { transform: scale(1.4); z-index: 20; }
+.day-dot.done {
+  background: rgba(0,198,255,0.28);
+  border-color: var(--accent);
+  box-shadow: 0 0 5px rgba(0,198,255,0.35);
+}
+.day-dot.active {
+  background: rgba(0,230,118,0.32);
+  border-color: var(--green);
+  box-shadow: 0 0 7px rgba(0,230,118,0.55);
+  animation: dayPulse 1.8s ease-in-out infinite;
+}
+.day-dot.pending { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.07); }
+@keyframes dayPulse { 0%,100%{box-shadow:0 0 5px rgba(0,230,118,0.4)} 50%{box-shadow:0 0 12px rgba(0,230,118,0.75)} }
+/* tooltip */
+.day-dot .day-tooltip {
+  display: none; position: absolute; bottom: calc(100% + 7px); left: 50%;
+  transform: translateX(-50%);
+  background: #0d1540; border: 1px solid var(--border);
+  border-radius: 8px; padding: 0.5rem 0.7rem;
+  width: 200px; z-index: 200; pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  white-space: normal;
+}
+.day-dot:hover .day-tooltip { display: block; }
+.day-tooltip-day { font-family: 'JetBrains Mono', monospace; font-size: 0.63rem; color: var(--accent); font-weight: 700; margin-bottom: 0.25rem; letter-spacing: 0.06em; }
+.day-tooltip-task { font-size: 0.74rem; color: var(--white); line-height: 1.4; }
+.day-tooltip-status { font-size: 0.63rem; margin-top: 0.25rem; font-family: 'JetBrains Mono', monospace; }
+.day-tooltip-status.done   { color: var(--accent); }
+.day-tooltip-status.active { color: var(--green); }
+.day-tooltip-status.pending{ color: var(--muted); }
+/* progress bar inside tracker */
+.tracker-bar-wrap { margin-top: 0.9rem; }
+.tracker-bar-label { display: flex; justify-content: space-between; font-size: 0.68rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; margin-bottom: 0.35rem; }
+.tracker-bar { height: 5px; background: rgba(255,255,255,0.07); border-radius: 10px; overflow: hidden; }
+.tracker-bar-fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--accent2), var(--accent)); transition: width 0.4s ease; }
+
+/* ─── ANIMATIONS ─── */
+@keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+@keyframes slideUp { from { opacity:0; transform: translateY(24px); } to { opacity:1; transform: translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-5px)} 80%{transform:translateX(5px)} }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hero-grid { display: none; }
+  .roadmap-phase { flex-direction: column; }
+  .roadmap-phases::before { display: none; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-logo">&lt; TJ /&gt;</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="edit-mode-btn" id="editModeBtn" onclick="toggleEditMode()">
+    <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg>
+    Edit Mode
+  </button>
+  <button class="save-file-btn" id="saveFileBtn" onclick="saveToFile()" title="Download updated index.html for GitHub">
+    <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+    Save to File
+  </button>
+</nav>
+<div class="edit-mode-badge">✏️ Edit Mode ON</div>
+<div class="conn-badge" id="connectionBadge" style="display:none"></div>
+
+<!-- ─── ADMIN MODAL ─── -->
+<div class="admin-overlay" id="adminModal">
+  <div class="admin-box">
+    <div class="admin-icon">🔐</div>
+    <div class="admin-title">Admin Login</div>
+    <div class="admin-subtitle">Enter your password to access Edit Mode</div>
+    <div class="admin-input-wrap">
+      <input class="admin-input" type="password" id="adminPassword" placeholder="Enter password" onkeydown="if(event.key==='Enter') adminLogin()"/>
+      <button class="admin-eye" onclick="togglePwdVisibility()">
+        <svg id="eyeIcon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+          <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+        </svg>
+      </button>
+    </div>
+    <div class="admin-error" id="adminError"></div>
+    <button class="admin-login-btn" onclick="adminLogin()">Unlock Edit Mode</button><br/>
+    <button class="admin-cancel" onclick="closeAdminModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-tag">Junior Data Engineer</div>
+  <h1 class="hero-name">Tamilselvam<br>Jeyaraman</h1>
+  <p class="hero-subtitle">
+    Aspiring Data Engineer passionate about <span>Data Modeling</span>, <span>ETL Pipelines</span> &amp; <span>Automation</span>
+    — building a career in data engineering through hands-on projects and consistent daily learning.
+  </p>
+  <div class="hero-cta">
+    <a href="#roadmap" class="btn btn-primary">
+      <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
+      90-Day Roadmap
+    </a>
+    <a href="#projects" class="btn btn-outline">
+      <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M2 2h4v4H2zm8 0h4v4h-4zM2 10h4v4H2zm8 0h4v4h-4z"/></svg>
+      View Projects
+    </a>
+    <a href="https://github.com/helptamilselvam" target="_blank" class="btn btn-outline">
+      <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+  </div>
+  <div class="hero-grid" aria-hidden="true">
+    <script>for(let i=0;i<48;i++) document.currentScript.insertAdjacentHTML('beforebegin','<span></span>')</script>
+  </div>
+</section>
+<hr class="divider"/>
+
+<!-- ═══════════════════════════════════════
+     TECH ICONS STRIP
+     ═══════════════════════════════════════ -->
+<section id="tech-icons">
+  <p class="tech-strip-label reveal">🛠 Technologies I'm Learning &amp; Building With</p>
+  <div class="tech-icons-grid reveal">
+
+    <!-- Python -->
+    <div class="tech-icon-card">
+      <svg width="40" height="40" viewBox="0 0 48 48"><linearGradient id="py1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#5A9FD4"/><stop offset="100%" stop-color="#306998"/></linearGradient><linearGradient id="py2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFD43B"/><stop offset="100%" stop-color="#FFE873"/></linearGradient><path fill="url(#py1)" d="M24 3.5c-5 0-9 1-9 4v3h9v1H12c-3 0-6 2-6 7s3 7 6 7h3v-3c0-4 3-6 9-6s9 2 9 6v11c0 3-4 5-9 5s-9-2-9-5v-3h-3c-3 0-6-2-6-7s3-7 6-7h3V7.5c0-3 4-4 9-4s9 1 9 4v3h-3v-3c0-3-4-4-9-4z"/><path fill="url(#py2)" d="M33 19.5c3 0 6 2 6 7v11c0 3-4 5-9 5s-9-2-9-5v-11c0-5 3-7 6-7h6zm-6 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/><circle fill="#fff" cx="19" cy="9.5" r="2"/><circle fill="#fff" cx="29" cy="36.5" r="2"/></svg>
+      <span class="tech-name">Python</span>
+    </div>
+
+    <!-- SQL -->
+    <div class="tech-icon-card">
+      <svg width="40" height="40" viewBox="0 0 48 48"><ellipse cx="24" cy="12" rx="14" ry="5" fill="#0064a5"/><path d="M10 12v8c0 2.76 6.27 5 14 5s14-2.24 14-5v-8c0 2.76-6.27 5-14 5S10 14.76 10 12z" fill="#0078cc"/><path d="M10 20v8c0 2.76 6.27 5 14 5s14-2.24 14-5v-8c0 2.76-6.27 5-14 5S10 22.76 10 20z" fill="#0064a5"/><path d="M10 28v8c0 2.76 6.27 5 14 5s14-2.24 14-5v-8c0 2.76-6.27 5-14 5S10 30.76 10 28z" fill="#004f8a"/><text x="24" y="14" text-anchor="middle" fill="white" font-size="5" font-family="JetBrains Mono,monospace" font-weight="bold">SQL</text></svg>
+      <span class="tech-name">SQL</span>
+    </div>
+
+    <!-- AWS -->
+    <div class="tech-icon-card">
+      <svg width="40" height="40" viewBox="0 0 48 48"><path d="M14 24c0-5.5 4.5-10 10-10s10 4.5 10 10" fill="none" stroke="#FF9900" stroke-width="3" stroke-linecap="round"/><path d="M10 30h28" stroke="#FF9900" stroke-width="2.5" stroke-linecap="round"/><path d="M7 34l3-4 3 4" fill="none" stroke="#FF9900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M35 34l3-4 3 4" fill="none" stroke="#FF9900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="24" y="22" text-anchor="middle" fill="#FF9900" font-size="6" font-family="Arial" font-weight="bold">AWS</text></svg>
+      <span class="tech-name">AWS</span>
+    </div>
+
+    <!-- Azure -->
+    <div class="tech-icon-card">
+      <svg width="40" height="40" viewBox="0 0 48 48"><polygon points="20,8 8,36 16,36 24,20" fill="#0078D4"/><polygon points="24,20 32,36 40,36 28,8" fill="#50E6FF"/><polygon points="8,36 40,36 36,42 12,42" fill="#0050C0"/></svg>
+      <span class="tech-name">Azure</span>
+    </div>
+
+    <!-- Snowflake -->
+    <div class="tech-icon-card">
+      <svg width="40" height="40" viewBox="0 0 48 48"><line x1="24" y1="6" x2="24" y2="42" stroke="#29B5E8" stroke-width="3.5" stroke-linecap="round"/><line x1="6" y1="24" x2="42" y2="24" stroke="#29B5E8" stroke-width="3.5" stroke-linecap="round"/><line x1="9.5" y1="9.5" x2="38.5" y2="38.5" stroke="#29B5E8" stroke-width="3.5" stroke-linecap="round"/><line x1="38.5" y1="9.5" x2="9.5" y2="38.5" stroke="#29B5E8" stroke-width="3.5" stroke-linecap="round"/><circle cx="24" cy="24" r="4" fill="#29B5E8"/><circle cx="24" cy="6" r="2.5" fill="#29B5E8"/><circle cx="24" cy="42" r="2.5" fill="#29B5E8"/><circle cx="6" cy="24" r="2.5" fill="#29B5E8"/><circle cx="42" cy="24" r="2.5" fill="#29B5E8"/></svg>
+      <span class="tech-name">Snowflake</span>
+    </div>
+
+    <!-- Apache Kafka -->
+    <div class="tech-icon-card">
+      <svg width="40" height="40" viewBox="0 0 48 48"><circle cx="24" cy="24" r="5" fill="none" stroke="#000" stroke-width="2.5"/><circle cx="24" cy="10" r="4" fill="#000"/><circle cx="24" cy="38" r="4" fill="#000"/><circle cx="10" cy="24" r="4" fill="#000"/><circle cx="38" cy="24" r="4" fill="#000"/><line x1="24" y1="14" x2="24" y2="19" stroke="#000" stroke-width="2"/><line x1="24" y1="29" x2="24" y2="34" stroke="#000" stroke-width="2"/><line x1="14" y1="24" x2="19" y2="24" stroke="#000" stroke-width="2"/><line x1="29" y1="24" x2="34" y2="24" stroke="#000" stroke-width="2"/><rect x="2" y="2" width="44" height="44" rx="8" fill="none" stroke="#000" stroke-width="1.5" opacity="0.15"/></svg>
+      <span class="tech-name">Kafka</span>
+    </div>
+
+    <!-- Apache Airflow -->
+    <div class="tech-icon-card">
+      <svg width="40" height="40" viewBox="0 0 48 48"><circle cx="24" cy="10" r="5" fill="#017CEE"/><circle cx="10" cy="32" r="5" fill="#017CEE"/><circle cx="38" cy="32" r="5" fill="#017CEE"/><line x1="24" y1="15" x2="10" y2="27" stroke="#017CEE" stroke-width="2.5" stroke-linecap="round"/><line x1="24" y1="15" x2="38" y2="27" stroke="#017CEE" stroke-width="2.5" stroke-linecap="round"/><line x1="15" y1="32" x2="33" y2="32" stroke="#017CEE" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span class="tech-name">Airflow</span>
+    </div>
+
+    <!-- PostgreSQL -->
+    <div class="tech-icon-card">
+      <svg width="40" height="40" viewBox="0 0 48 48"><ellipse cx="24" cy="14" rx="12" ry="6" fill="none" stroke="#336791" stroke-width="2.5"/><path d="M12 14v18c0 3.31 5.37 6 12 6s12-2.69 12-6V14" fill="none" stroke="#336791" stroke-width="2.5"/><path d="M36 20c2 0 4 1 4 4s-2 4-4 4" fill="none" stroke="#336791" stroke-width="2" stroke-linecap="round"/><line x1="24" y1="20" x2="24" y2="32" stroke="#336791" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="tech-name">PostgreSQL</span>
+    </div>
+
+    <!-- Hadoop -->
+    <div class="tech-icon-card">
+      <svg width="40" height="40" viewBox="0 0 48 48"><rect x="8" y="16" width="12" height="18" rx="3" fill="#F5A623"/><rect x="28" y="16" width="12" height="18" rx="3" fill="#F5A623"/><rect x="16" y="10" width="16" height="28" rx="3" fill="#E88A00"/><circle cx="24" cy="24" r="5" fill="#fff" opacity="0.9"/><text x="24" y="27" text-anchor="middle" fill="#E88A00" font-size="7" font-weight="bold" font-family="Arial">H</text></svg>
+      <span class="tech-name">Hadoop</span>
+    </div>
+
+    <!-- Cloud -->
+    <div class="tech-icon-card">
+      <svg width="40" height="40" viewBox="0 0 48 48"><path d="M36 30H14a8 8 0 0 1-1-15.9A10 10 0 0 1 32 20h1a7 7 0 0 1 3 13.3" fill="none" stroke="#00c6ff" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span class="tech-name">Cloud</span>
+    </div>
+
+    <!-- MS SQL -->
+    <div class="tech-icon-card">
+      <svg width="40" height="40" viewBox="0 0 48 48"><rect x="6" y="8" width="36" height="32" rx="4" fill="#CC2927"/><text x="24" y="22" text-anchor="middle" fill="white" font-size="7.5" font-family="Arial" font-weight="bold">MS</text><text x="24" y="32" text-anchor="middle" fill="white" font-size="6.5" font-family="Arial" font-weight="bold">SQL</text></svg>
+      <span class="tech-name">MS SQL</span>
+    </div>
+
+    <!-- dbt -->
+    <div class="tech-icon-card">
+      <svg width="40" height="40" viewBox="0 0 48 48"><polygon points="24,6 42,18 42,30 24,42 6,30 6,18" fill="none" stroke="#FF694B" stroke-width="2.5"/><polygon points="24,14 34,20 34,28 24,34 14,28 14,20" fill="#FF694B" opacity="0.3"/><text x="24" y="27" text-anchor="middle" fill="#FF694B" font-size="8" font-weight="bold" font-family="JetBrains Mono,monospace">dbt</text></svg>
+      <span class="tech-name">dbt</span>
+    </div>
+
+  </div>
+</section>
+<hr class="divider"/>
+
+<!-- ═══════════════════════════════════════
+     ABOUT
+     ═══════════════════════════════════════ -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-label">01 — Profile</div>
+    <h2 class="section-title">About Me</h2>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>I'm <strong>Tamilselvam Jeyaraman</strong>, a Junior Data Engineer based in <strong>Karur, Tamil Nadu, India</strong>. I hold a <strong>Master of Computer Applications (MCA)</strong> from SRM Institute of Science &amp; Technology, Chennai.</p>
+      <p>I'm making a focused career transition into <strong>Data Engineering</strong> — driven by a strong passion for building data pipelines, automating workflows, and transforming raw data into meaningful insights.</p>
+      <p>I'm actively building expertise in <strong>data modeling, ETL pipelines, SQL, and Python</strong>, with a focus on turning raw data into actionable insights. My 90-day learning roadmap reflects my commitment and consistency.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card"><span class="stat-num">MCA</span><span class="stat-label">Postgraduate Degree</span></div>
+      <div class="stat-card"><span class="stat-num">SQL</span><span class="stat-label">Core Strength</span></div>
+      <div class="stat-card"><span class="stat-num">90</span><span class="stat-label">Day Learning Plan</span></div>
+      <div class="stat-card"><span class="stat-num">∞</span><span class="stat-label">Curiosity for Data</span></div>
+    </div>
+  </div>
+</section>
+<hr class="divider"/>
+
+<!-- ═══════════════════════════════════════
+     90-DAY ROADMAP
+     ═══════════════════════════════════════ -->
+<section id="roadmap">
+  <div class="reveal">
+    <div class="section-label">02 — Learning Journey</div>
+    <div class="roadmap-tagline">Reset, Rebuild &amp; Refocus — New Career</div>
+    <h2 class="section-title">90-Day Data Engineering Roadmap</h2>
+  </div>
+  <p class="roadmap-intro reveal">
+    This roadmap shows exactly how I'm transitioning into Data Engineering — <strong>day by day, skill by skill.</strong>
+    Every phase builds on the last, from SQL fundamentals to cloud data platforms. This is not just a plan — it's my <strong>daily commitment</strong> to becoming job-ready.
+  </p>
+
+  <!-- 90-DAY COMPACT TRACKER -->
+  <div class="roadmap-tracker reveal" id="dayTracker">
+    <div class="tracker-top">
+      <span class="tracker-title">📅 90-Day Progress</span>
+      <div class="tracker-meta">
+        <span class="tracker-count"><span id="doneCount">0</span> / 90 days done</span>
+        <div class="tracker-legend">
+          <div class="legend-item"><div class="legend-dot done"></div>Done</div>
+          <div class="legend-item"><div class="legend-dot active"></div>Today</div>
+          <div class="legend-item"><div class="legend-dot pending"></div>Upcoming</div>
+        </div>
+      </div>
+    </div>
+    <div class="tracker-grid" id="trackerGrid"></div>
+    <div class="tracker-bar-wrap">
+      <div class="tracker-bar-label">
+        <span id="trackerPhase">Phase 1 🔥 · Week 1</span>
+        <span id="trackerTasksDone">0 / 90 complete</span>
+      </div>
+      <div class="tracker-bar"><div class="tracker-bar-fill" id="trackerBarFill" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <div class="roadmap-phases reveal">
+
+    <!-- ── PHASE 1 ── -->
+    <div class="roadmap-phase">
+      <div class="phase-dot phase-1">🔥</div>
+      <div class="phase-content">
+        <div class="phase-header">
+          <div class="phase-title">Phase 1 — Foundation &amp; Core SQL</div>
+          <span class="phase-days">Day 1 – 30</span>
+        </div>
+        <div class="phase-subtitle">Python mastery + Advanced SQL + Database design</div>
+        <span class="phase-status active">🟢 Currently Active</span>
+
+        <div class="phase-progress-wrap">
+          <div class="phase-progress-label"><span>Progress</span><span>Week 2 of 4 — ~35% complete</span></div>
+          <div class="phase-progress-bar"><div class="phase-progress-fill blue" style="width:35%"></div></div>
+        </div>
+
+        <div class="phase-weeks">
+
+          <div class="week-block open">
+            <button class="week-toggle" onclick="toggleWeek(this)">
+              <span class="week-status-dot in-progress"></span>
+              <span class="week-label">Week 1 (Day 1–7) — Python Basics &amp; Setup</span>
+              <span class="week-chevron">▼</span>
+            </button>
+            <div class="week-tasks">
+              <ul>
+                <li class="done-task" onclick="toggleTask(this)"><button class="task-btn" title="Mark incomplete">✅</button><span class="task-text">Install Python, VS Code, Git — set up dev environment</span></li>
+                <li class="done-task" onclick="toggleTask(this)"><button class="task-btn" title="Mark incomplete">✅</button><span class="task-text">Variables, data types, conditionals, loops (Day 1–2)</span></li>
+                <li class="done-task" onclick="toggleTask(this)"><button class="task-btn" title="Mark incomplete">✅</button><span class="task-text">Functions, list comprehensions, error handling (Day 3)</span></li>
+                <li class="done-task" onclick="toggleTask(this)"><button class="task-btn" title="Mark incomplete">✅</button><span class="task-text">File I/O — read/write CSV, JSON files (Day 4)</span></li>
+                <li class="done-task" onclick="toggleTask(this)"><button class="task-btn" title="Mark incomplete">✅</button><span class="task-text">Pandas basics — DataFrames, filtering, groupby (Day 5–6)</span></li>
+                <li class="done-task" onclick="toggleTask(this)"><button class="task-btn" title="Mark incomplete">✅</button><span class="task-text">Mini-project: Python Data Automation Script (Day 7) ✅ Done</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="week-block open">
+            <button class="week-toggle" onclick="toggleWeek(this)">
+              <span class="week-status-dot in-progress"></span>
+              <span class="week-label">Week 2 (Day 8–14) — Advanced Python &amp; SQL Intro</span>
+              <span class="week-chevron">▼</span>
+            </button>
+            <div class="week-tasks">
+              <ul>
+                <li class="done-task" onclick="toggleTask(this)"><button class="task-btn" title="Mark incomplete">✅</button><span class="task-text">NumPy arrays, vectorized operations (Day 8)</span></li>
+                <li class="done-task" onclick="toggleTask(this)"><button class="task-btn" title="Mark incomplete">✅</button><span class="task-text">Python OOP — classes, inheritance (Day 9)</span></li>
+                <li class="active-task" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">🔄</button><span class="task-text">MySQL install + basic SELECT, WHERE, ORDER BY (Day 10) — In Progress</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">JOINs (INNER, LEFT, RIGHT, FULL) with real examples (Day 11)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">GROUP BY, HAVING, aggregate functions (Day 12)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Subqueries and CTEs (Day 13)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Practice: 20 SQL problems on real dataset (Day 14)</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="week-block">
+            <button class="week-toggle" onclick="toggleWeek(this)">
+              <span class="week-status-dot upcoming"></span>
+              <span class="week-label">Week 3 (Day 15–21) — Advanced SQL &amp; DB Design</span>
+              <span class="week-chevron">▼</span>
+            </button>
+            <div class="week-tasks">
+              <ul>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Window functions — ROW_NUMBER, RANK, LAG, LEAD (Day 15)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Stored procedures, triggers, views (Day 16)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Database normalization — 1NF, 2NF, 3NF (Day 17)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Indexing strategies and query optimization (Day 18)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">PostgreSQL setup — compare with MySQL (Day 19)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">MS SQL Server basics — T-SQL differences (Day 20)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Mini-project: SQL Analytics Dashboard (Day 21) ✅ Done</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="week-block">
+            <button class="week-toggle" onclick="toggleWeek(this)">
+              <span class="week-status-dot upcoming"></span>
+              <span class="week-label">Week 4 (Day 22–30) — JDBC, Git &amp; Phase 1 Project</span>
+              <span class="week-chevron">▼</span>
+            </button>
+            <div class="week-tasks">
+              <ul>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">JDBC — connect Java to MySQL, execute queries (Day 22–23)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Build Student DB Management System in Java (Day 24–25) ✅ Done</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Git fundamentals — branches, commits, pull requests (Day 26)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">GitHub portfolio setup — README, project docs (Day 27)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Coursera Python certificate (Google) ✅ Done</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">IBM SQL certificate (Cognitiveclass.ai) ✅ Done</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Phase 1 review &amp; portfolio update (Day 29–30)</span></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <div class="phase-tags">
+          <span class="phase-tag">Python</span><span class="phase-tag">SQL</span>
+          <span class="phase-tag">PostgreSQL</span><span class="phase-tag">MySQL</span>
+          <span class="phase-tag">MS SQL</span><span class="phase-tag">JDBC</span><span class="phase-tag">Git</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PHASE 2 ── -->
+    <div class="roadmap-phase">
+      <div class="phase-dot phase-2">⚡</div>
+      <div class="phase-content">
+        <div class="phase-header">
+          <div class="phase-title">Phase 2 — ETL Pipelines &amp; Data Warehousing</div>
+          <span class="phase-days">Day 31 – 60</span>
+        </div>
+        <div class="phase-subtitle">Industry tools: Airflow, Kafka, Snowflake, dbt</div>
+        <span class="phase-status upcoming">🟡 Upcoming — Starts after Phase 1</span>
+
+        <div class="phase-progress-wrap">
+          <div class="phase-progress-label"><span>Progress</span><span>0% — Not started yet</span></div>
+          <div class="phase-progress-bar"><div class="phase-progress-fill cyan" style="width:0%"></div></div>
+        </div>
+
+        <div class="phase-weeks">
+
+          <div class="week-block">
+            <button class="week-toggle" onclick="toggleWeek(this)">
+              <span class="week-status-dot upcoming"></span>
+              <span class="week-label">Week 5 (Day 31–37) — ETL Concepts &amp; Apache Airflow</span>
+              <span class="week-chevron">▼</span>
+            </button>
+            <div class="week-tasks">
+              <ul>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">ETL vs ELT — concepts, architecture, use cases (Day 31)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Apache Airflow install (Docker) — understand DAGs (Day 32)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Write first DAG — BashOperator, PythonOperator (Day 33)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Task dependencies, scheduling, retries (Day 34)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Airflow connections — PostgreSQL, S3 hooks (Day 35)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Build ETL DAG: CSV → Transform → PostgreSQL (Day 36–37)</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="week-block">
+            <button class="week-toggle" onclick="toggleWeek(this)">
+              <span class="week-status-dot upcoming"></span>
+              <span class="week-label">Week 6 (Day 38–44) — Apache Kafka &amp; Streaming</span>
+              <span class="week-chevron">▼</span>
+            </button>
+            <div class="week-tasks">
+              <ul>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Kafka concepts — topics, partitions, brokers, offsets (Day 38)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Kafka setup with Docker — produce &amp; consume messages (Day 39)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Python Kafka client — kafka-python producer/consumer (Day 40)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Real-time data pipeline: Kafka → Python → PostgreSQL (Day 41–42)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Kafka vs traditional ETL — when to use each (Day 43–44)</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="week-block">
+            <button class="week-toggle" onclick="toggleWeek(this)">
+              <span class="week-status-dot upcoming"></span>
+              <span class="week-label">Week 7 (Day 45–51) — Snowflake &amp; Data Warehousing</span>
+              <span class="week-chevron">▼</span>
+            </button>
+            <div class="week-tasks">
+              <ul>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Cloud DW concepts — OLAP vs OLTP, star schema (Day 45)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Snowflake free trial — virtual warehouses, databases (Day 46)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Snowflake SQL — Time Travel, Streams, Tasks (Day 47)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Load data into Snowflake from S3/local (Day 48)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Data modeling — fact tables, dimension tables (Day 49)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Snowflake + Airflow integration (Day 50–51)</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="week-block">
+            <button class="week-toggle" onclick="toggleWeek(this)">
+              <span class="week-status-dot upcoming"></span>
+              <span class="week-label">Week 8 (Day 52–60) — dbt &amp; Phase 2 Project</span>
+              <span class="week-chevron">▼</span>
+            </button>
+            <div class="week-tasks">
+              <ul>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">dbt install + project setup (Day 52)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">dbt models — SQL transformations as .sql files (Day 53)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">dbt tests, documentation, lineage graph (Day 54)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">dbt + Snowflake end-to-end (Day 55)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Phase 2 project: Airflow ETL → Snowflake → dbt transformations (Day 56–59)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">GitHub push, README, portfolio update (Day 60)</span></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <div class="phase-tags">
+          <span class="phase-tag gold">Airflow</span><span class="phase-tag gold">Kafka</span>
+          <span class="phase-tag gold">Snowflake</span><span class="phase-tag gold">dbt</span>
+          <span class="phase-tag gold">ETL</span><span class="phase-tag gold">Data Modeling</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PHASE 3 ── -->
+    <div class="roadmap-phase">
+      <div class="phase-dot phase-3">🚀</div>
+      <div class="phase-content">
+        <div class="phase-header">
+          <div class="phase-title">Phase 3 — Cloud Platforms &amp; Big Data</div>
+          <span class="phase-days green">Day 61 – 90</span>
+        </div>
+        <div class="phase-subtitle">AWS, Azure, Hadoop, Spark — job-ready</div>
+        <span class="phase-status upcoming">🟡 Upcoming — Final Phase</span>
+
+        <div class="phase-progress-wrap">
+          <div class="phase-progress-label"><span>Progress</span><span>0% — Not started yet</span></div>
+          <div class="phase-progress-bar"><div class="phase-progress-fill green" style="width:0%"></div></div>
+        </div>
+
+        <div class="phase-weeks">
+
+          <div class="week-block">
+            <button class="week-toggle" onclick="toggleWeek(this)">
+              <span class="week-status-dot upcoming"></span>
+              <span class="week-label">Week 9 (Day 61–67) — AWS Core Services</span>
+              <span class="week-chevron">▼</span>
+            </button>
+            <div class="week-tasks">
+              <ul>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">AWS free tier setup — IAM, billing alerts (Day 61)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">S3 — buckets, policies, data lake basics (Day 62)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">AWS Glue — ETL jobs, crawlers, Data Catalog (Day 63)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">AWS Redshift — cluster setup, COPY command, queries (Day 64)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">AWS Lambda — serverless data triggers (Day 65)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">AWS RDS (PostgreSQL on cloud) + VPC basics (Day 66)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">AWS project: S3 → Glue → Redshift pipeline (Day 67)</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="week-block">
+            <button class="week-toggle" onclick="toggleWeek(this)">
+              <span class="week-status-dot upcoming"></span>
+              <span class="week-label">Week 10 (Day 68–74) — Microsoft Azure</span>
+              <span class="week-chevron">▼</span>
+            </button>
+            <div class="week-tasks">
+              <ul>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Azure free account — resource groups, subscriptions (Day 68)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Azure Blob Storage — containers, access tiers (Day 69)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Azure Data Factory — pipelines, linked services (Day 70)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Azure SQL Database — setup, queries, firewall rules (Day 71)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Azure Synapse Analytics — dedicated SQL pool intro (Day 72)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Azure project: Blob → Data Factory → Azure SQL (Day 73–74)</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="week-block">
+            <button class="week-toggle" onclick="toggleWeek(this)">
+              <span class="week-status-dot upcoming"></span>
+              <span class="week-label">Week 11 (Day 75–81) — Hadoop &amp; Spark</span>
+              <span class="week-chevron">▼</span>
+            </button>
+            <div class="week-tasks">
+              <ul>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Hadoop architecture — HDFS, MapReduce, YARN (Day 75)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Hive — HiveQL, tables on HDFS (Day 76)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Apache Spark — RDD vs DataFrame, transformations (Day 77)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">PySpark — read CSV/JSON, filter, groupBy, joins (Day 78)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Spark + S3 or Azure Blob integration (Day 79)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Docker — containerize a Python ETL script (Day 80–81)</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="week-block">
+            <button class="week-toggle" onclick="toggleWeek(this)">
+              <span class="week-status-dot upcoming"></span>
+              <span class="week-label">Week 12 (Day 82–90) — Certifications &amp; Final Project</span>
+              <span class="week-chevron">▼</span>
+            </button>
+            <div class="week-tasks">
+              <ul>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">AWS Cloud Practitioner or Azure DP-900 exam prep (Day 82–84)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Take cloud certification exam (Day 85)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Final portfolio project: Full cloud pipeline — S3 → Glue → Redshift → Tableau (Day 86–88)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Polish GitHub README, LinkedIn profile update (Day 89)</span></li>
+                <li class="task-check" onclick="toggleTask(this)"><button class="task-btn" title="Mark complete">⬜</button><span class="task-text">Apply to Junior Data Engineer roles with complete portfolio 🎯 (Day 90)</span></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <div class="phase-tags">
+          <span class="phase-tag green">AWS</span><span class="phase-tag green">Azure</span>
+          <span class="phase-tag green">Hadoop</span><span class="phase-tag green">Spark</span>
+          <span class="phase-tag green">Docker</span><span class="phase-tag green">Cloud Cert</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="roadmap-goal reveal">
+    <div class="roadmap-goal-title">🎯 Goal: Job-Ready Data Engineer in 90 Days</div>
+    <div class="roadmap-goal-text">
+      By Day 90 — I will have hands-on project experience with Python, SQL, Airflow, Kafka, Snowflake, AWS, and Azure.
+      A complete portfolio. A cloud certification. And the skills to contribute from Day 1 in a data engineering role.
+    </div>
+  </div>
+</section>
+<hr class="divider"/>
+
+<!-- ═══════════════════════════════════════
+     SKILLS
+     ═══════════════════════════════════════ -->
+<section id="skills">
+  <div class="reveal">
+    <div class="section-label">03 — Expertise</div>
+    <h2 class="section-title">Skills &amp; Technologies</h2>
+  </div>
+  <div class="skills-grid reveal" id="skillsGrid">
+  </div>
+
+  <button class="add-project-btn reveal" style="margin-top:2rem" onclick="document.getElementById('addSkillGroupModal').classList.add('active')">
+    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/></svg>
+    Add Skill Category
+  </button>
+</section>
+<hr class="divider"/>
+
+<!-- ═══════════════════════════════════════
+     EXPERIENCE
+     ═══════════════════════════════════════ -->
+<section id="experience">
+  <div class="reveal">
+    <div class="section-label">04 — Work History</div>
+    <h2 class="section-title">Experience</h2>
+  </div>
+  <div class="exp-list reveal" id="expList">
+  </div>
+
+  <button class="add-project-btn reveal" style="margin-top:2rem" onclick="document.getElementById('addExpModal').classList.add('active')">
+    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/></svg>
+    Add Experience
+  </button>
+</section>
+<hr class="divider"/>
+
+<!-- ═══════════════════════════════════════
+     PROJECTS
+     ═══════════════════════════════════════ -->
+<section id="projects">
+  <div class="reveal">
+    <div class="section-label">05 — Work</div>
+    <h2 class="section-title">Projects</h2>
+  </div>
+  <div class="projects-grid reveal" id="projectsGrid">
+  </div>
+  <button class="add-project-btn reveal" onclick="document.getElementById('addModal').classList.add('active')">
+    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/></svg>
+    Add New Project
+  </button>
+</section>
+<hr class="divider"/>
+
+<!-- ═══════════════════════════════════════
+     EDUCATION & CERTIFICATIONS
+     ═══════════════════════════════════════ -->
+<section id="education">
+  <div class="reveal">
+    <div class="section-label">06 — Background</div>
+    <h2 class="section-title">Education &amp; Certifications</h2>
+  </div>
+  <div class="edu-timeline reveal">
+    <div class="edu-item">
+      <div class="edu-period">July 2022 — July 2024</div>
+      <div class="edu-degree">Master of Computer Applications (MCA)</div>
+      <div class="edu-school">S.R.M. Institute of Science &amp; Technology, Chennai</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-period">April 2013 — May 2016</div>
+      <div class="edu-degree">Bachelor of Computer Applications (BCA)</div>
+      <div class="edu-school">Jairams Arts &amp; Science College, Karur</div>
+    </div>
+  </div>
+
+  <div class="cert-grid reveal" id="certGrid">
+  </div>
+
+  <button class="add-project-btn reveal" style="margin-top:1.5rem" onclick="document.getElementById('addCertModal').classList.add('active')">
+    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/></svg>
+    Add Certification
+  </button>
+</section>
+<hr class="divider"/>
+
+<!-- ═══════════════════════════════════════
+     CONTACT
+     ═══════════════════════════════════════ -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-label" style="justify-content:center">07 — Connect</div>
+    <h2 class="section-title" style="text-align:center">Get in Touch</h2>
+    <p style="color:var(--muted);max-width:500px;margin:0 auto;line-height:1.7;text-align:center">
+      I'm actively looking for junior data engineering roles, internships, and collaborations. Let's connect!
+    </p>
+  </div>
+  <div class="contact-links reveal">
+    <a href="mailto:tamilselvamjeyaraman@gmail.com" class="contact-chip">
+      <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.731z"/></svg>
+      Email Me
+    </a>
+    <a href="https://www.linkedin.com/in/tamilselvamjeyaraman-808266157" target="_blank" class="contact-chip">
+      <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://github.com/helptamilselvam" target="_blank" class="contact-chip">
+      <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+  </div>
+</section>
+<footer>
+  <p>Designed &amp; built with ❤️ by <strong>Tamilselvam Jeyaraman</strong> · 2025</p>
+</footer>
+
+<!-- CERT LIGHTBOX -->
+<div class="cert-lightbox" id="certLightbox">
+  <div class="cert-lightbox-box">
+    <div class="cert-lb-header">
+      <div class="cert-lb-title" id="lbCertTitle">Certificate</div>
+      <button class="cert-lb-close" onclick="closeCertLightbox()">✕</button>
+    </div>
+    <div id="lbCertMedia"></div>
+    <div class="cert-lb-details">
+      <div class="cert-lb-row"><span class="cert-lb-label">Issuer</span><span class="cert-lb-val" id="lbCertIssuer"></span></div>
+      <div class="cert-lb-row"><span class="cert-lb-label">Date</span><span class="cert-lb-val" id="lbCertDate"></span></div>
+    </div>
+    <div class="cert-lb-actions" id="lbCertActions"></div>
+  </div>
+</div>
+
+<!-- ADD CERTIFICATION -->
+<div class="modal-overlay" id="addCertModal"><div class="modal">
+  <div class="modal-title">🏅 Add Certification</div>
+  <div class="form-group"><label>CERTIFICATION NAME</label><input type="text" id="cName" placeholder="e.g. Google Data Analytics Certificate"/></div>
+  <div class="form-group"><label>ISSUING ORGANIZATION</label><input type="text" id="cIssuer" placeholder="e.g. Google / Coursera"/></div>
+  <div class="form-group"><label>DATE ISSUED</label><input type="text" id="cDate" placeholder="e.g. March 2025"/></div>
+  <div class="form-group"><label>CERTIFICATE URL (optional)</label><input type="url" id="cUrl" placeholder="https://certificate-link.com"/></div>
+  <div class="form-group"><label>EMOJI ICON</label><input type="text" id="cEmoji" placeholder="🏅" maxlength="2"/></div>
+  <div class="form-group">
+    <label>UPLOAD CERTIFICATE (Image or PDF)</label>
+    <div class="modal-upload-zone cert-upload-zone" id="certUploadZone">
+      <span class="upload-icon">📁</span>
+      <p>Click or drag &amp; drop your certificate image or PDF here</p>
+      <input type="file" id="certFileInput" accept="image/*,.pdf"/>
+    </div>
+    <img id="certUploadPreview" class="modal-upload-preview" alt="Preview"/>
+    <div id="certUploadFilename" class="modal-upload-filename"></div>
+  </div>
+  <div class="modal-actions">
+    <button class="btn btn-outline btn-sm" onclick="document.getElementById('addCertModal').classList.remove('active')">Cancel</button>
+    <button class="btn btn-primary btn-sm" onclick="addCertification()">Add Certification</button>
+  </div>
+</div></div>
+
+<!-- EDIT CERTIFICATION -->
+<div class="modal-overlay" id="editCertModal"><div class="modal">
+  <div class="modal-title">✏️ Edit Certification</div>
+  <div class="form-group"><label>CERTIFICATION NAME</label><input type="text" id="ecName"/></div>
+  <div class="form-group"><label>ISSUING ORGANIZATION</label><input type="text" id="ecIssuer"/></div>
+  <div class="form-group"><label>DATE ISSUED</label><input type="text" id="ecDate"/></div>
+  <div class="form-group"><label>CERTIFICATE URL</label><input type="url" id="ecUrl"/></div>
+  <div class="form-group"><label>EMOJI ICON</label><input type="text" id="ecEmoji" maxlength="2"/></div>
+  <div class="form-group">
+    <label>REPLACE CERTIFICATE FILE (optional)</label>
+    <div class="modal-upload-zone cert-upload-zone" id="editCertUploadZone">
+      <span class="upload-icon">🔄</span>
+      <p>Click or drag to replace image/PDF</p>
+      <input type="file" id="editCertFileInput" accept="image/*,.pdf"/>
+    </div>
+    <img id="editCertUploadPreview" class="modal-upload-preview" alt="Preview"/>
+    <div id="editCertUploadFilename" class="modal-upload-filename"></div>
+  </div>
+  <div class="modal-actions">
+    <button class="btn btn-outline btn-sm" onclick="document.getElementById('editCertModal').classList.remove('active')">Cancel</button>
+    <button class="btn btn-primary btn-sm" onclick="saveEditCert()">Save Changes</button>
+  </div>
+</div></div>
+
+<!-- ADD EXPERIENCE -->
+<div class="modal-overlay" id="addExpModal"><div class="modal">
+  <div class="modal-title">💼 Add Experience</div>
+  <div class="form-group"><label>JOB TITLE / ROLE</label><input type="text" id="eRole" placeholder="e.g. Junior Data Engineer"/></div>
+  <div class="form-group"><label>COMPANY / ORGANIZATION</label><input type="text" id="eCompany" placeholder="e.g. ABC Technologies, Chennai"/></div>
+  <div class="form-group"><label>DURATION</label><input type="text" id="ePeriod" placeholder="e.g. Jan 2025 — Present"/></div>
+  <div class="form-group"><label>DESCRIPTION</label><textarea id="eDesc" placeholder="Brief description..."></textarea></div>
+  <div class="form-group"><label>SKILLS / TAGS (comma separated)</label><input type="text" id="eTags" placeholder="Python, SQL, ETL"/></div>
+  <div class="modal-actions">
+    <button class="btn btn-outline btn-sm" onclick="document.getElementById('addExpModal').classList.remove('active')">Cancel</button>
+    <button class="btn btn-primary btn-sm" onclick="addExp()">Add Experience</button>
+  </div>
+</div></div>
+
+<!-- EDIT EXPERIENCE -->
+<div class="modal-overlay" id="editExpModal"><div class="modal">
+  <div class="modal-title">✏️ Edit Experience</div>
+  <div class="form-group"><label>JOB TITLE / ROLE</label><input type="text" id="eeRole"/></div>
+  <div class="form-group"><label>COMPANY / ORGANIZATION</label><input type="text" id="eeCompany"/></div>
+  <div class="form-group"><label>DURATION</label><input type="text" id="eePeriod"/></div>
+  <div class="form-group"><label>DESCRIPTION</label><textarea id="eeDesc"></textarea></div>
+  <div class="form-group"><label>SKILLS / TAGS (comma separated)</label><input type="text" id="eeTags"/></div>
+  <div class="modal-actions">
+    <button class="btn btn-outline btn-sm" onclick="document.getElementById('editExpModal').classList.remove('active')">Cancel</button>
+    <button class="btn btn-primary btn-sm" onclick="saveEditExp()">Save Changes</button>
+  </div>
+</div></div>
+
+<!-- ADD PROJECT -->
+<div class="modal-overlay" id="addModal"><div class="modal">
+  <div class="modal-title">➕ Add New Project</div>
+  <div class="form-group"><label>PROJECT NAME</label><input type="text" id="pName" placeholder="e.g. ETL Pipeline with Airflow"/></div>
+  <div class="form-group"><label>DESCRIPTION</label><textarea id="pDesc" placeholder="Brief description..."></textarea></div>
+  <div class="form-group"><label>GITHUB URL</label><input type="url" id="pGithub" placeholder="https://github.com/yourusername/repo"/></div>
+  <div class="form-group"><label>TECH STACK (comma separated)</label><input type="text" id="pStack" placeholder="Python, Airflow, PostgreSQL"/></div>
+  <div class="form-group"><label>EMOJI ICON</label><input type="text" id="pEmoji" placeholder="🚀" maxlength="2"/></div>
+  <div class="modal-actions">
+    <button class="btn btn-outline btn-sm" onclick="document.getElementById('addModal').classList.remove('active')">Cancel</button>
+    <button class="btn btn-primary btn-sm" onclick="addProject()">Add to Portfolio</button>
+  </div>
+</div></div>
+
+<!-- EDIT PROJECT -->
+<div class="modal-overlay" id="editProjectModal"><div class="modal">
+  <div class="modal-title">✏️ Edit Project</div>
+  <div class="form-group"><label>PROJECT NAME</label><input type="text" id="epName"/></div>
+  <div class="form-group"><label>DESCRIPTION</label><textarea id="epDesc"></textarea></div>
+  <div class="form-group"><label>GITHUB URL</label><input type="url" id="epGithub"/></div>
+  <div class="form-group"><label>TECH STACK (comma separated)</label><input type="text" id="epStack"/></div>
+  <div class="form-group"><label>EMOJI ICON</label><input type="text" id="epEmoji" maxlength="2"/></div>
+  <div class="modal-actions">
+    <button class="btn btn-outline btn-sm" onclick="document.getElementById('editProjectModal').classList.remove('active')">Cancel</button>
+    <button class="btn btn-primary btn-sm" onclick="saveEditProject()">Save Changes</button>
+  </div>
+</div></div>
+
+<!-- ADD SKILL CATEGORY -->
+<div class="modal-overlay" id="addSkillGroupModal"><div class="modal">
+  <div class="modal-title">➕ Add Skill Category</div>
+  <div class="form-group"><label>CATEGORY NAME</label><input type="text" id="sgName" placeholder="e.g. Cloud Platforms"/></div>
+  <div class="form-group"><label>SKILLS (comma separated)</label><input type="text" id="sgSkills" placeholder="e.g. AWS, GCP, Azure"/></div>
+  <div class="modal-actions">
+    <button class="btn btn-outline btn-sm" onclick="document.getElementById('addSkillGroupModal').classList.remove('active')">Cancel</button>
+    <button class="btn btn-primary btn-sm" onclick="addSkillGroup()">Add Category</button>
+  </div>
+</div></div>
+
+<!-- EDIT SKILL CATEGORY -->
+<div class="modal-overlay" id="editSkillGroupModal"><div class="modal">
+  <div class="modal-title">✏️ Edit Category Name</div>
+  <div class="form-group"><label>CATEGORY NAME</label><input type="text" id="sgEditName"/></div>
+  <div class="modal-actions">
+    <button class="btn btn-outline btn-sm" onclick="document.getElementById('editSkillGroupModal').classList.remove('active')">Cancel</button>
+    <button class="btn btn-primary btn-sm" onclick="saveEditSkillGroup()">Save</button>
+  </div>
+</div></div
+>
+
+<script>
+/* ─── SCROLL REVEAL handled in DOMContentLoaded below ─── */
+
+/* ─── SHARED SVG HELPERS ─── */
+const pencilSVG  = `<svg width="11" height="11" fill="currentColor" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg>`;
+const trashSVG   = `<svg width="11" height="11" fill="currentColor" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg>`;
+const editSVG    = `<svg width="10" height="10" fill="currentColor" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10z"/></svg>`;
+const trashSmSVG = `<svg width="10" height="10" fill="currentColor" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg>`;
+const githubSVG  = `<svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>`;
+
+/* =========================================================
+   ADMIN / EDIT MODE  — 🔑 Change password below
+   ========================================================= */
+const ADMIN_PASSWORD = 'Tamil@2025';
+let adminUnlocked = false;
+
+function toggleEditMode() {
+  if (adminUnlocked && document.body.classList.contains('edit-mode')) {
+    exitEditMode();
+  } else {
+    document.getElementById('adminModal').classList.add('active');
+    setTimeout(() => document.getElementById('adminPassword').focus(), 100);
+  }
+}
+function adminLogin() {
+  const input = document.getElementById('adminPassword');
+  const err   = document.getElementById('adminError');
+  if (input.value === ADMIN_PASSWORD) {
+    adminUnlocked = true; closeAdminModal(); enterEditMode();
+  } else {
+    input.classList.add('error');
+    err.textContent = '❌ Incorrect password. Try again.';
+    input.value = '';
+    setTimeout(() => input.classList.remove('error'), 400);
+  }
+}
+function enterEditMode() {
+  document.body.classList.add('edit-mode');
+  const btn = document.getElementById('editModeBtn');
+  btn.classList.add('active');
+  btn.innerHTML = `<svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/></svg> Exit Edit`;
+}
+function exitEditMode() {
+  adminUnlocked = false;
+  document.body.classList.remove('edit-mode');
+  const btn = document.getElementById('editModeBtn');
+  btn.classList.remove('active');
+  btn.innerHTML = `<svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg> Edit Mode`;
+}
+function closeAdminModal() {
+  document.getElementById('adminModal').classList.remove('active');
+  document.getElementById('adminPassword').value = '';
+  document.getElementById('adminError').textContent = '';
+}
+function togglePwdVisibility() {
+  const input = document.getElementById('adminPassword');
+  const icon  = document.getElementById('eyeIcon');
+  if (input.type === 'password') {
+    input.type = 'text';
+    icon.innerHTML = `<path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/><path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/><path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709z"/><path fill-rule="evenodd" d="M13.646 14.354l-12-12 .708-.708 12 12-.708.708z"/>`;
+  } else {
+    input.type = 'password';
+    icon.innerHTML = `<path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>`;
+  }
+}
+
+/* =========================================================
+   CERTIFICATIONS — Upload Image/PDF + Lightbox View + Add / Edit / Remove
+   ========================================================= */
+let _certUploadData = null;
+let _certUploadType = null;
+let _certUploadName = '';
+let _editCertCard   = null;
+
+/* ─── Week accordion toggle ─── */
+function toggleWeek(el) {
+  const block = el.closest('.week-block');
+  block.classList.toggle('open');
+}
+
+/* ─── File upload handler ─── */
+function initCertUpload() {
+  const zone  = document.getElementById('certUploadZone');
+  const input = document.getElementById('certFileInput');
+  const prev  = document.getElementById('certUploadPreview');
+  const fname = document.getElementById('certUploadFilename');
+  if (!zone) return;
+  zone.addEventListener('click', () => input.click());
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('drag-over'); handleCertFile(e.dataTransfer.files[0], prev, fname); });
+  input.addEventListener('change', () => handleCertFile(input.files[0], prev, fname));
+}
+function initEditCertUpload() {
+  const zone  = document.getElementById('editCertUploadZone');
+  const input = document.getElementById('editCertFileInput');
+  const prev  = document.getElementById('editCertUploadPreview');
+  const fname = document.getElementById('editCertUploadFilename');
+  if (!zone) return;
+  zone.addEventListener('click', () => input.click());
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('drag-over'); handleCertFile(e.dataTransfer.files[0], prev, fname); });
+  input.addEventListener('change', () => handleCertFile(input.files[0], prev, fname));
+}
+function handleCertFile(file, previewEl, filenameEl) {
+  if (!file) return;
+  _certUploadName = file.name;
+  const reader = new FileReader();
+  reader.onload = e => {
+    _certUploadData = e.target.result;
+    _certUploadType = file.type.startsWith('image/') ? 'image' : 'pdf';
+    if (_certUploadType === 'image') { previewEl.src = _certUploadData; previewEl.style.display = 'block'; }
+    else { previewEl.style.display = 'none'; }
+    filenameEl.textContent = `📎 ${file.name}`;
+    filenameEl.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ─── Build cert card HTML (no preview shown — lightbox only) ─── */
+function buildCertCardHTML({ name, issuer, date, url, emoji, uploadData, uploadType, uploadName }) {
+  const dateHtml    = date ? `<span class="cert-date">📅 ${date}</span>` : '';
+  const hasFileBadge = (uploadData) ? `<span class="cert-has-file">📎 File attached</span>` : '';
+  return `
+    <div class="cert-body">
+      <div class="cert-top">
+        <span class="cert-emoji">${emoji || '🏅'}</span>
+        <div class="cert-info">
+          <div class="cert-name">${name}</div>
+          <div class="cert-issuer">${issuer || ''}</div>
+        </div>
+      </div>
+      <div class="cert-meta-row">${dateHtml}${hasFileBadge}</div>
+      <div class="cert-bottom">
+        <button class="cert-view-btn" onclick="openCertLightbox(this)">
+          <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/><path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/></svg>
+          View Certificate
+        </button>
+        <div class="cert-actions card-actions">
+          <button class="edit-cert-btn" onclick="openEditCert(this)">${pencilSVG} Edit</button>
+          <button class="remove-project-btn" onclick="removeCert(this)">${trashSVG} Remove</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ─── Lightbox: open ─── */
+function openCertLightbox(btn) {
+  const card     = btn.closest('.cert-card');
+  const name     = (card.querySelector('.cert-name') || {}).textContent?.trim() || '';
+  const issuer   = (card.querySelector('.cert-issuer') || {}).textContent?.trim() || '';
+  const date     = (card.querySelector('.cert-date') || {}).textContent?.replace('📅 ', '').trim() || '';
+  const url      = card._certUrl || '';
+  const uploadData = card._certUploadData || null;
+  const uploadType = card._certUploadType || null;
+  const uploadName = card._certUploadName || '';
+
+  const lb = document.getElementById('certLightbox');
+  document.getElementById('lbCertTitle').textContent = name;
+  document.getElementById('lbCertIssuer').textContent = issuer || '—';
+  document.getElementById('lbCertDate').textContent   = date || '—';
+
+  const mediaWrap = document.getElementById('lbCertMedia');
+  if (uploadData && uploadType === 'image') {
+    mediaWrap.innerHTML = `<img class="cert-lb-img" src="${uploadData}" alt="${name}"/>`;
+  } else if (uploadData && uploadType === 'pdf') {
+    mediaWrap.innerHTML = `<iframe class="cert-lb-pdf" src="${uploadData}" title="${name}"></iframe>`;
+  } else {
+    mediaWrap.innerHTML = `<div class="cert-lb-no-file"><span>📄</span>No certificate file uploaded yet.<br>Use Edit Mode to upload an image or PDF.</div>`;
+  }
+
+  const lbActions = document.getElementById('lbCertActions');
+  lbActions.innerHTML = '';
+  if (url) {
+    lbActions.innerHTML = `<a href="${url}" target="_blank" class="cert-lb-open-link">
+      <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+      Open Certificate URL
+    </a>`;
+  }
+
+  lb.classList.add('active');
+}
+
+function closeCertLightbox() {
+  document.getElementById('certLightbox').classList.remove('active');
+}
+
+/* ─── Add certification ─── */
+function addCertification() {
+  const name  = document.getElementById('cName').value.trim();
+  const issuer = document.getElementById('cIssuer').value.trim();
+  const date   = document.getElementById('cDate').value.trim();
+  const url    = document.getElementById('cUrl').value.trim();
+  const emoji  = document.getElementById('cEmoji').value.trim() || '🏅';
+  if (!name) { alert('Please enter a certification name.'); return; }
+
+  const card = document.createElement('div');
+  card.className = 'cert-card';
+  card.innerHTML = buildCertCardHTML({ name, issuer, date, url, emoji, uploadData: _certUploadData, uploadType: _certUploadType, uploadName: _certUploadName });
+  card._certUploadData = _certUploadData;
+  card._certUploadType = _certUploadType;
+  card._certUploadName = _certUploadName;
+  card._certUrl        = url;
+  document.getElementById('certGrid').appendChild(card);
+
+  ['cName','cIssuer','cDate','cUrl','cEmoji'].forEach(id => document.getElementById(id).value = '');
+  const prev = document.getElementById('certUploadPreview');
+  const fname = document.getElementById('certUploadFilename');
+  if (prev)  { prev.style.display = 'none'; prev.src = ''; }
+  if (fname) { fname.style.display = 'none'; fname.textContent = ''; }
+  document.getElementById('certFileInput').value = '';
+  _certUploadData = null; _certUploadType = null; _certUploadName = '';
+  document.getElementById('addCertModal').classList.remove('active');
+}
+
+/* ─── Open edit cert ─── */
+function openEditCert(btn) {
+  _editCertCard = btn.closest('.cert-card');
+  document.getElementById('ecName').value   = (_editCertCard.querySelector('.cert-name') || {}).textContent?.trim() || '';
+  document.getElementById('ecIssuer').value = (_editCertCard.querySelector('.cert-issuer') || {}).textContent?.trim() || '';
+  document.getElementById('ecDate').value   = (_editCertCard.querySelector('.cert-date') || {}).textContent?.replace('📅 ', '').trim() || '';
+  document.getElementById('ecUrl').value    = _editCertCard._certUrl || '';
+  document.getElementById('ecEmoji').value  = (_editCertCard.querySelector('.cert-emoji') || {}).textContent?.trim() || '🏅';
+
+  _certUploadData = _editCertCard._certUploadData || null;
+  _certUploadType = _editCertCard._certUploadType || null;
+  _certUploadName = _editCertCard._certUploadName || '';
+
+  const editPrev  = document.getElementById('editCertUploadPreview');
+  const editFname = document.getElementById('editCertUploadFilename');
+  if (_certUploadType === 'image' && _certUploadData) {
+    editPrev.src = _certUploadData; editPrev.style.display = 'block';
+    editFname.style.display = 'none';
+  } else if (_certUploadType === 'pdf' && _certUploadName) {
+    editPrev.style.display = 'none';
+    editFname.textContent = `📎 ${_certUploadName}`; editFname.style.display = 'block';
+  } else {
+    editPrev.style.display = 'none'; editFname.style.display = 'none';
+  }
+  document.getElementById('editCertModal').classList.add('active');
+}
+
+/* ─── Save edit cert ─── */
+function saveEditCert() {
+  if (!_editCertCard) return;
+  const name  = document.getElementById('ecName').value.trim();
+  const issuer = document.getElementById('ecIssuer').value.trim();
+  const date   = document.getElementById('ecDate').value.trim();
+  const url    = document.getElementById('ecUrl').value.trim();
+  const emoji  = document.getElementById('ecEmoji').value.trim() || '🏅';
+  if (!name) { alert('Please enter a certification name.'); return; }
+
+  _editCertCard.innerHTML = buildCertCardHTML({ name, issuer, date, url, emoji, uploadData: _certUploadData, uploadType: _certUploadType, uploadName: _certUploadName });
+  _editCertCard._certUploadData = _certUploadData;
+  _editCertCard._certUploadType = _certUploadType;
+  _editCertCard._certUploadName = _certUploadName;
+  _editCertCard._certUrl        = url;
+  _editCertCard = null;
+  _certUploadData = null; _certUploadType = null; _certUploadName = '';
+  document.getElementById('editCertModal').classList.remove('active');
+}
+
+function removeCert(btn) {
+  const c = btn.closest('.cert-card');
+  c.style.transition = 'opacity 0.3s, transform 0.3s';
+  c.style.opacity = '0'; c.style.transform = 'scale(0.95)';
+  setTimeout(() => c.remove(), 300);
+}
+
+/* =========================================================
+   SKILLS — Tags + Groups
+   ========================================================= */
+function removeSkillTag(btn) {
+  const tag = btn.closest('.skill-tag');
+  tag.style.transition = 'opacity 0.2s, transform 0.2s';
+  tag.style.opacity = '0'; tag.style.transform = 'scale(0.8)';
+  setTimeout(() => tag.remove(), 200);
+}
+function addSkillTag(btn) {
+  const name = prompt('Enter skill name:');
+  if (!name || !name.trim()) return;
+  const tagsContainer = btn.closest('.skill-tags');
+  const tag = document.createElement('span');
+  tag.className = 'skill-tag';
+  tag.innerHTML = `${name.trim()} <button class="skill-tag-remove" onclick="removeSkillTag(this)">✕</button>`;
+  tagsContainer.insertBefore(tag, btn);
+}
+function removeSkillGroup(btn) {
+  const group = btn.closest('.skill-group');
+  group.style.transition = 'opacity 0.3s, transform 0.3s';
+  group.style.opacity = '0'; group.style.transform = 'scale(0.95)';
+  setTimeout(() => group.remove(), 300);
+}
+let _editSkillGroup = null;
+function openEditSkillGroup(btn) {
+  _editSkillGroup = btn.closest('.skill-group');
+  document.getElementById('sgEditName').value = _editSkillGroup.querySelector('.skill-group-title').textContent.trim();
+  document.getElementById('editSkillGroupModal').classList.add('active');
+}
+function saveEditSkillGroup() {
+  if (!_editSkillGroup) return;
+  const name = document.getElementById('sgEditName').value.trim();
+  if (!name) { alert('Please enter a category name.'); return; }
+  _editSkillGroup.querySelector('.skill-group-title').textContent = name;
+  _editSkillGroup = null;
+  document.getElementById('editSkillGroupModal').classList.remove('active');
+}
+function addSkillGroup() {
+  const name   = document.getElementById('sgName').value.trim();
+  const skills = document.getElementById('sgSkills').value.trim();
+  if (!name) { alert('Please enter a category name.'); return; }
+  const tagHtml = skills ? skills.split(',').map(s => `<span class="skill-tag">${s.trim()} <button class="skill-tag-remove" onclick="removeSkillTag(this)">✕</button></span>`).join('') : '';
+  const group = document.createElement('div');
+  group.className = 'skill-group';
+  group.innerHTML = `
+    <div class="skill-group-header">
+      <div class="skill-group-title">${name}</div>
+      <div class="skill-group-actions">
+        <button class="skill-group-btn skill-group-edit" onclick="openEditSkillGroup(this)">${editSVG} Edit</button>
+        <button class="skill-group-btn skill-group-delete" onclick="removeSkillGroup(this)">${trashSmSVG} Remove</button>
+      </div>
+    </div>
+    <div class="skill-tags">${tagHtml}<button class="skill-add-tag" onclick="addSkillTag(this)">+ Add</button></div>`;
+  document.getElementById('skillsGrid').appendChild(group);
+  ['sgName','sgSkills'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('addSkillGroupModal').classList.remove('active');
+}
+
+/* =========================================================
+   EXPERIENCE
+   ========================================================= */
+let _editExpCard = null;
+function openEditExp(btn) {
+  _editExpCard = btn.closest('.exp-card');
+  document.getElementById('eeRole').value    = _editExpCard.querySelector('.exp-role').textContent.trim();
+  document.getElementById('eeCompany').value = (_editExpCard.querySelector('.exp-company') || {}).textContent?.trim() || '';
+  document.getElementById('eePeriod').value  = (_editExpCard.querySelector('.exp-period') || {}).textContent?.trim() || '';
+  document.getElementById('eeDesc').value    = (_editExpCard.querySelector('.exp-desc') || {}).textContent?.trim() || '';
+  document.getElementById('eeTags').value    = Array.from(_editExpCard.querySelectorAll('.exp-tag')).map(t => t.textContent.trim()).join(', ');
+  document.getElementById('editExpModal').classList.add('active');
+}
+function saveEditExp() {
+  if (!_editExpCard) return;
+  const role = document.getElementById('eeRole').value.trim();
+  if (!role) { alert('Please enter a job title.'); return; }
+  const company = document.getElementById('eeCompany').value.trim();
+  const period  = document.getElementById('eePeriod').value.trim();
+  const desc    = document.getElementById('eeDesc').value.trim();
+  const tags    = document.getElementById('eeTags').value.trim();
+  const tagHtml = tags ? tags.split(',').map(t => `<span class="exp-tag">${t.trim()}</span>`).join('') : '';
+  _editExpCard.innerHTML = `
+    <div class="exp-header"><div class="exp-role">${role}</div>${period ? `<span class="exp-period">${period}</span>` : ''}</div>
+    ${company ? `<div class="exp-company">${company}</div>` : ''}
+    ${desc    ? `<div class="exp-desc">${desc}</div>` : ''}
+    <div class="exp-footer"><div class="exp-tags">${tagHtml}</div>
+      <div class="card-actions"><button class="edit-exp-btn" onclick="openEditExp(this)">${pencilSVG} Edit</button><button class="remove-exp-btn" onclick="removeExp(this)">${trashSVG} Remove</button></div>
+    </div>`;
+  _editExpCard = null;
+  document.getElementById('editExpModal').classList.remove('active');
+}
+function removeExp(btn) {
+  const c = btn.closest('.exp-card');
+  c.style.transition = 'opacity 0.3s, transform 0.3s';
+  c.style.opacity = '0'; c.style.transform = 'translateX(-12px)';
+  setTimeout(() => c.remove(), 300);
+}
+function addExp() {
+  const role = document.getElementById('eRole').value.trim();
+  if (!role) { alert('Please enter a job title.'); return; }
+  const company = document.getElementById('eCompany').value.trim();
+  const period  = document.getElementById('ePeriod').value.trim();
+  const desc    = document.getElementById('eDesc').value.trim();
+  const tags    = document.getElementById('eTags').value.trim();
+  const tagHtml = tags ? tags.split(',').map(t => `<span class="exp-tag">${t.trim()}</span>`).join('') : '';
+  const card = document.createElement('div');
+  card.className = 'exp-card';
+  card.innerHTML = `
+    <div class="exp-header"><div class="exp-role">${role}</div>${period ? `<span class="exp-period">${period}</span>` : ''}</div>
+    ${company ? `<div class="exp-company">${company}</div>` : ''}
+    ${desc    ? `<div class="exp-desc">${desc}</div>` : ''}
+    <div class="exp-footer"><div class="exp-tags">${tagHtml}</div>
+      <div class="card-actions"><button class="edit-exp-btn" onclick="openEditExp(this)">${pencilSVG} Edit</button><button class="remove-exp-btn" onclick="removeExp(this)">${trashSVG} Remove</button></div>
+    </div>`;
+  document.getElementById('expList').appendChild(card);
+  ['eRole','eCompany','ePeriod','eDesc','eTags'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('addExpModal').classList.remove('active');
+}
+
+/* =========================================================
+   PROJECTS
+   ========================================================= */
+let _editProjectCard = null;
+function openEditProject(btn) {
+  _editProjectCard = btn.closest('.project-card');
+  document.getElementById('epName').value   = (_editProjectCard.querySelector('.project-title') || {}).textContent?.trim() || '';
+  document.getElementById('epDesc').value   = (_editProjectCard.querySelector('.project-desc') || {}).textContent?.trim() || '';
+  const ghAnchor = _editProjectCard.querySelector('.project-link');
+  document.getElementById('epGithub').value = ghAnchor ? ghAnchor.href : '';
+  document.getElementById('epStack').value  = Array.from(_editProjectCard.querySelectorAll('.stack-tag')).map(t => t.textContent.trim()).join(', ');
+  document.getElementById('epEmoji').value  = (_editProjectCard.querySelector('.project-icon') || {}).textContent?.trim() || '🚀';
+  document.getElementById('editProjectModal').classList.add('active');
+}
+function saveEditProject() {
+  if (!_editProjectCard) return;
+  const name  = document.getElementById('epName').value.trim();
+  if (!name) { alert('Please enter a project name.'); return; }
+  const desc   = document.getElementById('epDesc').value.trim();
+  const github = document.getElementById('epGithub').value.trim();
+  const stack  = document.getElementById('epStack').value.trim();
+  const emoji  = document.getElementById('epEmoji').value.trim() || '🚀';
+  const tags   = stack ? stack.split(',').map(t => `<span class="stack-tag">${t.trim()}</span>`).join('') : '';
+  const ghLink = github ? `<a href="${github}" target="_blank" class="project-link" title="GitHub">${githubSVG}</a>` : '';
+  _editProjectCard.innerHTML = `
+    <div class="project-header"><span class="project-icon">${emoji}</span><div class="project-links">${ghLink}</div></div>
+    <div class="project-title">${name}</div>
+    <div class="project-desc">${desc || 'No description provided.'}</div>
+    <div class="project-stack">${tags}</div>
+    <div class="card-actions" style="margin-top:1.1rem">
+      <button class="edit-project-btn" onclick="openEditProject(this)">${pencilSVG} Edit</button>
+      <button class="remove-project-btn" onclick="removeProject(this)">${trashSVG} Remove</button>
+    </div>`;
+  _editProjectCard = null;
+  document.getElementById('editProjectModal').classList.remove('active');
+}
+function removeProject(btn) {
+  const c = btn.closest('.project-card');
+  c.style.transition = 'opacity 0.3s, transform 0.3s';
+  c.style.opacity = '0'; c.style.transform = 'scale(0.95)';
+  setTimeout(() => c.remove(), 300);
+}
+function addProject() {
+  const name  = document.getElementById('pName').value.trim();
+  if (!name) { alert('Please enter a project name.'); return; }
+  const desc   = document.getElementById('pDesc').value.trim();
+  const github = document.getElementById('pGithub').value.trim();
+  const stack  = document.getElementById('pStack').value.trim();
+  const emoji  = document.getElementById('pEmoji').value.trim() || '🚀';
+  const tags   = stack ? stack.split(',').map(t => `<span class="stack-tag">${t.trim()}</span>`).join('') : '';
+  const ghLink = github ? `<a href="${github}" target="_blank" class="project-link" title="GitHub">${githubSVG}</a>` : '';
+  const card = document.createElement('div');
+  card.className = 'project-card';
+  card.innerHTML = `
+    <div class="project-header"><span class="project-icon">${emoji}</span><div class="project-links">${ghLink}</div></div>
+    <div class="project-title">${name}</div>
+    <div class="project-desc">${desc || 'No description provided.'}</div>
+    <div class="project-stack">${tags}</div>
+    <div class="card-actions" style="margin-top:1.1rem">
+      <button class="edit-project-btn" onclick="openEditProject(this)">${pencilSVG} Edit</button>
+      <button class="remove-project-btn" onclick="removeProject(this)">${trashSVG} Remove</button>
+    </div>`;
+  document.getElementById('projectsGrid').appendChild(card);
+  ['pName','pDesc','pGithub','pStack','pEmoji'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('addModal').classList.remove('active');
+}
+
+
+/* ─── TASK CHECKBOX TOGGLE ─── */
+function toggleTask(li) {
+  if (!document.body.classList.contains('edit-mode')) return;
+  const btn = li.querySelector('.task-btn');
+  if (li.classList.contains('done-task')) {
+    // undo — back to pending
+    li.classList.remove('done-task');
+    btn.textContent = '⬜';
+    btn.title = 'Mark complete';
+  } else {
+    // mark done
+    li.classList.remove('active-task');
+    li.classList.add('done-task');
+    btn.textContent = '✅';
+    btn.title = 'Mark incomplete';
+  }
+  // update progress bar for this phase
+  updatePhaseProgress(li.closest('.phase-content'));
+}
+
+function updatePhaseProgress(phaseContent) {
+  if (!phaseContent) return;
+  const allTasks = phaseContent.querySelectorAll('.week-tasks li');
+  const doneTasks = phaseContent.querySelectorAll('.week-tasks li.done-task');
+  const pct = allTasks.length ? Math.round((doneTasks.length / allTasks.length) * 100) : 0;
+  const bar = phaseContent.querySelector('.phase-progress-fill');
+  const label = phaseContent.querySelectorAll('.phase-progress-label span')[1];
+  if (bar) bar.style.width = pct + '%';
+  if (label) label.textContent = pct + '% complete (' + doneTasks.length + '/' + allTasks.length + ' tasks)';
+}
+
+// Init progress bars on load
+
+
+
+/* ─── 90-DAY TRACKER ─── */
+
+// Day → task mapping (day number: { task, phase, week, status })
+const dayMap = {
+  1:  { task: "Install Python, VS Code, Git — dev environment setup", phase: 1, week: 1 },
+  2:  { task: "Variables, data types, conditionals, loops", phase: 1, week: 1 },
+  3:  { task: "Functions, list comprehensions, error handling", phase: 1, week: 1 },
+  4:  { task: "File I/O — read/write CSV, JSON files", phase: 1, week: 1 },
+  5:  { task: "Pandas basics — DataFrames, filtering", phase: 1, week: 1 },
+  6:  { task: "Pandas groupby, merge, pivot tables", phase: 1, week: 1 },
+  7:  { task: "Mini-project: Python Data Automation Script ✅", phase: 1, week: 1 },
+  8:  { task: "NumPy arrays, vectorized operations", phase: 1, week: 2 },
+  9:  { task: "Python OOP — classes, inheritance", phase: 1, week: 2 },
+  10: { task: "MySQL install + basic SELECT, WHERE, ORDER BY", phase: 1, week: 2 },
+  11: { task: "JOINs — INNER, LEFT, RIGHT, FULL", phase: 1, week: 2 },
+  12: { task: "GROUP BY, HAVING, aggregate functions", phase: 1, week: 2 },
+  13: { task: "Subqueries and CTEs", phase: 1, week: 2 },
+  14: { task: "Practice: 20 SQL problems on real dataset", phase: 1, week: 2 },
+  15: { task: "Window functions — ROW_NUMBER, RANK, LAG, LEAD", phase: 1, week: 3 },
+  16: { task: "Stored procedures, triggers, views", phase: 1, week: 3 },
+  17: { task: "Database normalization — 1NF, 2NF, 3NF", phase: 1, week: 3 },
+  18: { task: "Indexing strategies and query optimization", phase: 1, week: 3 },
+  19: { task: "PostgreSQL setup — compare with MySQL", phase: 1, week: 3 },
+  20: { task: "MS SQL Server basics — T-SQL differences", phase: 1, week: 3 },
+  21: { task: "Mini-project: SQL Analytics Dashboard ✅", phase: 1, week: 3 },
+  22: { task: "JDBC — connect Java to MySQL, execute queries", phase: 1, week: 4 },
+  23: { task: "JDBC — CRUD operations, prepared statements", phase: 1, week: 4 },
+  24: { task: "Build Student DB Management System in Java", phase: 1, week: 4 },
+  25: { task: "Student DB — data validation, query optimization", phase: 1, week: 4 },
+  26: { task: "Git fundamentals — branches, commits, pull requests", phase: 1, week: 4 },
+  27: { task: "GitHub portfolio setup — README, project docs", phase: 1, week: 4 },
+  28: { task: "Coursera Python certificate — Google ✅", phase: 1, week: 4 },
+  29: { task: "IBM SQL certificate — Cognitiveclass.ai ✅", phase: 1, week: 4 },
+  30: { task: "Phase 1 review & portfolio update", phase: 1, week: 4 },
+  31: { task: "ETL vs ELT — concepts, architecture, use cases", phase: 2, week: 5 },
+  32: { task: "Apache Airflow install (Docker) — understand DAGs", phase: 2, week: 5 },
+  33: { task: "Write first DAG — BashOperator, PythonOperator", phase: 2, week: 5 },
+  34: { task: "Task dependencies, scheduling, retries", phase: 2, week: 5 },
+  35: { task: "Airflow connections — PostgreSQL, S3 hooks", phase: 2, week: 5 },
+  36: { task: "Build ETL DAG: CSV → Transform → PostgreSQL", phase: 2, week: 5 },
+  37: { task: "Airflow DAG — monitoring, logging, alerts", phase: 2, week: 5 },
+  38: { task: "Kafka concepts — topics, partitions, brokers, offsets", phase: 2, week: 6 },
+  39: { task: "Kafka setup with Docker — produce & consume messages", phase: 2, week: 6 },
+  40: { task: "Python Kafka client — kafka-python producer/consumer", phase: 2, week: 6 },
+  41: { task: "Real-time pipeline: Kafka → Python → PostgreSQL", phase: 2, week: 6 },
+  42: { task: "Kafka consumer groups, offset management", phase: 2, week: 6 },
+  43: { task: "Kafka vs traditional ETL — when to use each", phase: 2, week: 6 },
+  44: { task: "Kafka Schema Registry & Avro basics", phase: 2, week: 6 },
+  45: { task: "Cloud DW concepts — OLAP vs OLTP, star schema", phase: 2, week: 7 },
+  46: { task: "Snowflake free trial — virtual warehouses, databases", phase: 2, week: 7 },
+  47: { task: "Snowflake SQL — Time Travel, Streams, Tasks", phase: 2, week: 7 },
+  48: { task: "Load data into Snowflake from S3/local", phase: 2, week: 7 },
+  49: { task: "Data modeling — fact tables, dimension tables", phase: 2, week: 7 },
+  50: { task: "Snowflake + Airflow integration", phase: 2, week: 7 },
+  51: { task: "Snowflake performance tuning — clustering, caching", phase: 2, week: 7 },
+  52: { task: "dbt install + project setup", phase: 2, week: 8 },
+  53: { task: "dbt models — SQL transformations as .sql files", phase: 2, week: 8 },
+  54: { task: "dbt tests, documentation, lineage graph", phase: 2, week: 8 },
+  55: { task: "dbt + Snowflake end-to-end pipeline", phase: 2, week: 8 },
+  56: { task: "Phase 2 project: Airflow ETL → Snowflake → dbt", phase: 2, week: 8 },
+  57: { task: "Phase 2 project: build transformations layer", phase: 2, week: 8 },
+  58: { task: "Phase 2 project: testing & data quality checks", phase: 2, week: 8 },
+  59: { task: "Phase 2 project: documentation & GitHub push", phase: 2, week: 8 },
+  60: { task: "Phase 2 review & portfolio update", phase: 2, week: 8 },
+  61: { task: "AWS free tier setup — IAM, billing alerts", phase: 3, week: 9 },
+  62: { task: "S3 — buckets, policies, data lake basics", phase: 3, week: 9 },
+  63: { task: "AWS Glue — ETL jobs, crawlers, Data Catalog", phase: 3, week: 9 },
+  64: { task: "AWS Redshift — cluster setup, COPY command, queries", phase: 3, week: 9 },
+  65: { task: "AWS Lambda — serverless data triggers", phase: 3, week: 9 },
+  66: { task: "AWS RDS (PostgreSQL on cloud) + VPC basics", phase: 3, week: 9 },
+  67: { task: "AWS project: S3 → Glue → Redshift pipeline", phase: 3, week: 9 },
+  68: { task: "Azure free account — resource groups, subscriptions", phase: 3, week: 10 },
+  69: { task: "Azure Blob Storage — containers, access tiers", phase: 3, week: 10 },
+  70: { task: "Azure Data Factory — pipelines, linked services", phase: 3, week: 10 },
+  71: { task: "Azure SQL Database — setup, queries, firewall rules", phase: 3, week: 10 },
+  72: { task: "Azure Synapse Analytics — dedicated SQL pool intro", phase: 3, week: 10 },
+  73: { task: "Azure project: Blob → Data Factory → Azure SQL", phase: 3, week: 10 },
+  74: { task: "Azure vs AWS — comparison & use cases", phase: 3, week: 10 },
+  75: { task: "Hadoop architecture — HDFS, MapReduce, YARN", phase: 3, week: 11 },
+  76: { task: "Hive — HiveQL, tables on HDFS", phase: 3, week: 11 },
+  77: { task: "Apache Spark — RDD vs DataFrame, transformations", phase: 3, week: 11 },
+  78: { task: "PySpark — read CSV/JSON, filter, groupBy, joins", phase: 3, week: 11 },
+  79: { task: "Spark + S3 or Azure Blob integration", phase: 3, week: 11 },
+  80: { task: "Docker — containerize a Python ETL script", phase: 3, week: 11 },
+  81: { task: "Docker Compose — multi-container data pipeline", phase: 3, week: 11 },
+  82: { task: "AWS Cloud Practitioner / Azure DP-900 exam prep", phase: 3, week: 12 },
+  83: { task: "Exam prep — practice tests & revision", phase: 3, week: 12 },
+  84: { task: "Exam prep — final review", phase: 3, week: 12 },
+  85: { task: "Take cloud certification exam 🎓", phase: 3, week: 12 },
+  86: { task: "Final project: End-to-end cloud pipeline S3→Glue→Redshift", phase: 3, week: 12 },
+  87: { task: "Final project: build transformations & dashboards", phase: 3, week: 12 },
+  88: { task: "Final project: documentation, testing, deploy", phase: 3, week: 12 },
+  89: { task: "Polish GitHub README, LinkedIn profile update", phase: 3, week: 12 },
+  90: { task: "Apply to Junior Data Engineer roles 🎯", phase: 3, week: 12 },
+};
+
+// Task completion state (persists via object, edit mode only)
+const dayStatus = {};
+
+function buildDayTracker() {
+  const grid = document.getElementById('trackerGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  // Count done tasks from the task lists
+  const allTaskLis = document.querySelectorAll('.week-tasks li');
+  const doneLis    = document.querySelectorAll('.week-tasks li.done-task');
+  const activeLis  = document.querySelectorAll('.week-tasks li.active-task');
+
+  // Map tasks to days based on order
+  const taskEls = Array.from(allTaskLis);
+  const doneCount = doneLis.length;
+  const activeIdx = Array.from(taskEls).findIndex(li => li.classList.contains('active-task'));
+
+  // Build dots 1–90
+  let doneDays = 0;
+  for (let d = 1; d <= 90; d++) {
+    const info = dayMap[d] || { task: `Day ${d}`, phase: d <= 30 ? 1 : d <= 60 ? 2 : 3, week: Math.ceil(d/7) };
+
+    // Determine status
+    let status = 'pending';
+    if (dayStatus[d] === 'done') {
+      status = 'done';
+    } else if (d <= doneCount) {
+      status = 'done';
+    } else if (d === doneCount + 1 || (activeIdx >= 0 && d === doneCount + 1)) {
+      status = 'active';
+    }
+
+    if (status === 'done') doneDays++;
+
+    const dot = document.createElement('div');
+    dot.className = `day-dot ${status}`;
+    dot.dataset.day = d;
+    dot.innerHTML = `
+      <div class="day-tooltip">
+        <div class="day-tooltip-day">Day ${d} · Phase ${info.phase} · Week ${info.week}</div>
+        <div class="day-tooltip-task">${info.task}</div>
+        <div class="day-tooltip-status ${status}">${status === 'done' ? '✅ Completed' : status === 'active' ? '🔄 In Progress' : '⬜ Upcoming'}</div>
+      </div>`;
+
+    // Click to toggle only in edit mode
+    dot.addEventListener('click', () => {
+      if (!document.body.classList.contains('edit-mode')) return;
+      if (dayStatus[d] === 'done') {
+        delete dayStatus[d];
+      } else {
+        dayStatus[d] = 'done';
+      }
+      buildDayTracker(); // rebuild
+    });
+
+    grid.appendChild(dot);
+  }
+
+  // Update counter
+  document.getElementById('doneCount').textContent = doneDays;
+
+  // Update summary
+  const phase = doneDays < 30 ? 'Phase 1 🔥' : doneDays < 60 ? 'Phase 2 ⚡' : 'Phase 3 🚀';
+  const week  = 'Week ' + Math.min(12, Math.max(1, Math.ceil((doneDays + 1) / 7)));
+  const el1 = document.getElementById('trackerTasksDone');
+  const el2 = document.getElementById('trackerPhase');
+  const el3 = document.getElementById('trackerWeek');
+  const barFill = document.getElementById('trackerBarFill');
+  if (barFill) barFill.style.width = Math.round((doneDays/90)*100) + '%';
+  if (el1) el1.textContent = doneDays + ' / 90 complete';
+  if (el2) el2.textContent = '';
+  if (el3) el3.textContent = '';
+  const phaseWeekEl = document.getElementById('trackerPhase');
+  if (phaseWeekEl) phaseWeekEl.textContent = phase.replace(' 🔥','').replace(' ⚡','').replace(' 🚀','') + ' · ' + week;
+}
+
+// Rebuild tracker whenever a task is ticked
+const _origToggleTask = window.toggleTask;
+window.toggleTask = function(li) {
+  if (!document.body.classList.contains('edit-mode')) return;
+  const btn = li.querySelector('.task-btn');
+  if (li.classList.contains('done-task')) {
+    li.classList.remove('done-task');
+    btn.textContent = '⬜';
+    btn.title = 'Mark complete';
+  } else {
+    li.classList.remove('active-task');
+    li.classList.add('done-task');
+    btn.textContent = '✅';
+    btn.title = 'Mark incomplete';
+  }
+  updatePhaseProgress(li.closest('.phase-content'));
+  buildDayTracker();
+};
+
+/* ─── INIT handled at bottom of file ─── */
+
+
+/* =========================================================
+   API LAYER — connects all edits to the backend database
+   All changes save immediately via fetch() to /api/...
+   ========================================================= */
+
+/* =========================================================
+   DATA LAYER — Simple, direct localStorage storage
+   Works on GitHub Pages, Vercel, and local file://
+   No backend needed. All data saved in browser.
+   ========================================================= */
+
+/* ── Default data shown on first load ── */
+const DEFAULTS = {
+  certifications: [
+    { id: 1, name: 'Crash Course on Python',        issuer: 'Google / Coursera',      date: '2024', url: 'https://coursera.org',       emoji: '🐍', file_data: null, file_type: null, file_name: null },
+    { id: 2, name: 'SQL and Relational Databases 101', issuer: 'IBM / Cognitiveclass.ai', date: '2024', url: 'https://cognitiveclass.ai', emoji: '🗄️', file_data: null, file_type: null, file_name: null },
+  ],
+  experience: [
+    { id: 1, role: 'Graphic Designer', company: 'Star Prints, Karur — Offset Printing', period: 'June 2016 — December 2025',
+      description: 'Worked for 9 years 7 months in designing print media, managing layout workflows, and delivering high-quality offset print materials for clients across industries. Built strong attention to detail and deadline discipline — skills that transfer directly into data engineering work.',
+      tags: 'Print Design,Adobe Suite,Layout,Client Delivery' },
+  ],
+  projects: [
+    { id: 1, name: 'Student Database Management',  description: 'A Java-based application using JDBC to manage student records with MySQL — featuring CRUD operations, data validation, and query optimization.',               github_url: 'https://github.com/helptamilselvam/Myprofile', stack: 'Java,JDBC,MySQL',    emoji: '🗄️' },
+    { id: 2, name: 'Python Data Automation Script', description: 'Automated data extraction and transformation pipeline using Python. Processes raw CSV datasets, cleans data, and generates structured reports with summary statistics.', github_url: 'https://github.com/helptamilselvam/Myprofile', stack: 'Python,Pandas,CSV', emoji: '🐍' },
+    { id: 3, name: 'SQL Analytics Dashboard',       description: 'Relational database design and complex SQL queries for business analytics — includes joins, aggregations, window functions, and stored procedures.',                  github_url: 'https://github.com/helptamilselvam/Myprofile', stack: 'MySQL,SQL,Analytics', emoji: '📊' },
+  ],
+  skillGroups: [
+    { id: 1, title: 'Languages',        tags: [{id:1,tag:'Python'},{id:2,tag:'SQL'},{id:3,tag:'Java'},{id:4,tag:'C++'}] },
+    { id: 2, title: 'Databases',        tags: [{id:5,tag:'MySQL'},{id:6,tag:'PostgreSQL'},{id:7,tag:'MS SQL'},{id:8,tag:'JDBC'}] },
+    { id: 3, title: 'Data Engineering', tags: [{id:9,tag:'ETL Pipelines'},{id:10,tag:'Data Modeling'},{id:11,tag:'Airflow'},{id:12,tag:'Kafka'},{id:13,tag:'Snowflake'}] },
+    { id: 4, title: 'Cloud & Tools',    tags: [{id:14,tag:'AWS'},{id:15,tag:'Azure'},{id:16,tag:'Hadoop'},{id:17,tag:'Git & GitHub'}] },
+  ],
+  roadmapProgress: [],
+};
+
+/* ── Simple localStorage read/write ── */
+function dbGet(key)      { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch(e) { return null; } }
+function dbSet(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch(e) { console.warn('Storage error:', e); } }
+function dbNextId(key)   { const n = (dbGet('_id_'+key) || 0) + 1; dbSet('_id_'+key, n); return n; }
+
+/* ── Get all data (uses defaults if localStorage empty) ── */
+function getAllData() {
+  return {
+    certifications:  dbGet('certs')      || DEFAULTS.certifications,
+    experience:      dbGet('exp')        || DEFAULTS.experience,
+    projects:        dbGet('projects')   || DEFAULTS.projects,
+    skillGroups:     dbGet('skillGroups')|| DEFAULTS.skillGroups,
+    roadmapProgress: dbGet('roadmap')    || [],
+  };
+}
+
+/* ── CRUD helpers ── */
+const DB = {
+  // Certifications
+  getCerts:     ()      => dbGet('certs')    || DEFAULTS.certifications,
+  saveCerts:    (rows)  => dbSet('certs', rows),
+  addCert:      (d)     => { const rows = DB.getCerts(); const item = {...d, id: dbNextId('cert')}; rows.push(item); DB.saveCerts(rows); return item; },
+  updateCert:   (id, d) => { const rows = DB.getCerts().map(r => r.id==id ? {...r,...d,id:r.id} : r); DB.saveCerts(rows); return rows.find(r=>r.id==id); },
+  deleteCert:   (id)    => DB.saveCerts(DB.getCerts().filter(r => r.id != id)),
+
+  // Experience
+  getExp:       ()      => dbGet('exp')      || DEFAULTS.experience,
+  saveExp:      (rows)  => dbSet('exp', rows),
+  addExp:       (d)     => { const rows = DB.getExp(); const item = {...d, id: dbNextId('exp')}; rows.push(item); DB.saveExp(rows); return item; },
+  updateExp:    (id, d) => { const rows = DB.getExp().map(r => r.id==id ? {...r,...d,id:r.id} : r); DB.saveExp(rows); return rows.find(r=>r.id==id); },
+  deleteExp:    (id)    => DB.saveExp(DB.getExp().filter(r => r.id != id)),
+
+  // Projects
+  getProjects:    ()      => dbGet('projects')  || DEFAULTS.projects,
+  saveProjects:   (rows)  => dbSet('projects', rows),
+  addProject:     (d)     => { const rows = DB.getProjects(); const item = {...d, id: dbNextId('proj')}; rows.push(item); DB.saveProjects(rows); return item; },
+  updateProject:  (id, d) => { const rows = DB.getProjects().map(r => r.id==id ? {...r,...d,id:r.id} : r); DB.saveProjects(rows); return rows.find(r=>r.id==id); },
+  deleteProject:  (id)    => DB.saveProjects(DB.getProjects().filter(r => r.id != id)),
+
+  // Skills
+  getSkillGroups:   ()          => dbGet('skillGroups') || DEFAULTS.skillGroups,
+  saveSkillGroups:  (rows)      => dbSet('skillGroups', rows),
+  addSkillGroup:    (title)     => { const rows = DB.getSkillGroups(); const item = {id: dbNextId('sg'), title, tags:[]}; rows.push(item); DB.saveSkillGroups(rows); return item; },
+  updateSkillGroup: (id, title) => { const rows = DB.getSkillGroups().map(r => r.id==id ? {...r,title} : r); DB.saveSkillGroups(rows); },
+  deleteSkillGroup: (id)        => DB.saveSkillGroups(DB.getSkillGroups().filter(r => r.id != id)),
+  addSkillTag:      (gid, tag)  => { const rows = DB.getSkillGroups(); const newTag = {id:dbNextId('st'), group_id:gid, tag}; const updated = rows.map(r => r.id==gid ? {...r, tags:[...r.tags, newTag]} : r); DB.saveSkillGroups(updated); return newTag; },
+  deleteSkillTag:   (id)        => DB.saveSkillGroups(DB.getSkillGroups().map(r => ({...r, tags: r.tags.filter(t => t.id != id)}))),
+
+  // Roadmap
+  getRoadmap:     ()          => dbGet('roadmap') || [],
+  setDayStatus:   (day, st)   => { const rows = DB.getRoadmap().filter(r => r.day != day); rows.push({day, status:st}); dbSet('roadmap', rows); },
+  resetRoadmap:   ()          => dbSet('roadmap', []),
+};
+
+/* ── Dummy API object (keeps compatibility with save functions) ── */
+const API = {
+  async get(path) {
+    if (path === '/api/data') return getAllData();
+    return null;
+  },
+  async post(path, data) {
+    if (path === '/api/certifications')  return { success:true, cert:    DB.addCert(data) };
+    if (path === '/api/experience')      return { success:true, exp:     DB.addExp(data) };
+    if (path === '/api/projects')        return { success:true, project: DB.addProject(data) };
+    if (path === '/api/skills/groups')   return { success:true, group:   DB.addSkillGroup(data.title) };
+    if (path === '/api/skills/tags')     return { success:true, tag:     DB.addSkillTag(data.group_id, data.tag) };
+    if (path === '/api/roadmap/day')     { DB.setDayStatus(data.day, data.status); return {success:true}; }
+    return { success:true };
+  },
+  async put(path, data) {
+    const id = path.split('/').pop();
+    if (path.includes('/api/certifications/'))  return { success:true, cert:    DB.updateCert(id, data) };
+    if (path.includes('/api/experience/'))      return { success:true, exp:     DB.updateExp(id, data) };
+    if (path.includes('/api/projects/'))        return { success:true, project: DB.updateProject(id, data) };
+    if (path.includes('/api/skills/groups/'))   { DB.updateSkillGroup(id, data.title); return {success:true}; }
+    return { success:true };
+  },
+  async del(path) {
+    const id = path.split('/').pop();
+    if (path.includes('/api/certifications/'))     DB.deleteCert(id);
+    else if (path.includes('/api/experience/'))    DB.deleteExp(id);
+    else if (path.includes('/api/projects/'))      DB.deleteProject(id);
+    else if (path.includes('/api/skills/groups/')) DB.deleteSkillGroup(id);
+    else if (path.includes('/api/skills/tags/'))   DB.deleteSkillTag(id);
+    else if (path.includes('/api/roadmap/reset'))  DB.resetRoadmap();
+    return { success:true };
+  },
+};
+
+/* ─── Load all data on page start ─── */
+async function loadAllFromDB() {
+  // Load from localStorage (with defaults if first visit)
+  const data = getAllData();
+  if (!data) return;
+
+  console.log('📦 Data loaded from localStorage');
+
+  // ── Always clear + re-render from data source ──
+
+  // CERTIFICATIONS
+  const certGrid = document.getElementById('certGrid');
+  if (certGrid) {
+    certGrid.innerHTML = '';
+    (data.certifications || []).forEach(cert => {
+      const card = document.createElement('div');
+      card.className = 'cert-card';
+      card.dataset.id = cert.id;
+      card.innerHTML = buildCertCardHTML({
+        name: cert.name, issuer: cert.issuer, date: cert.date,
+        url: cert.url, emoji: cert.emoji,
+        uploadData: cert.file_data, uploadType: cert.file_type, uploadName: cert.file_name
+      });
+      card._certUploadData = cert.file_data;
+      card._certUploadType = cert.file_type;
+      card._certUploadName = cert.file_name;
+      card._certUrl        = cert.url;
+      certGrid.appendChild(card);
+    });
+  }
+
+  // EXPERIENCE
+  const expList = document.getElementById('expList');
+  if (expList) {
+    expList.innerHTML = '';
+    (data.experience || []).forEach(exp => {
+      const card = document.createElement('div');
+      card.className = 'exp-card';
+      card.dataset.id = exp.id;
+      const tagHtml = (exp.tags||'').split(',').filter(Boolean).map(t => `<span class="exp-tag">${t.trim()}</span>`).join('');
+      card.innerHTML = `
+        <div class="exp-header">
+          <div class="exp-role">${exp.role}</div>
+          ${exp.period ? `<span class="exp-period">${exp.period}</span>` : ''}
+        </div>
+        ${exp.company     ? `<div class="exp-company">${exp.company}</div>` : ''}
+        ${exp.description ? `<div class="exp-desc">${exp.description}</div>` : ''}
+        <div class="exp-footer">
+          <div class="exp-tags">${tagHtml}</div>
+          <div class="card-actions">
+            <button class="edit-exp-btn" onclick="openEditExp(this)">${pencilSVG} Edit</button>
+            <button class="remove-exp-btn" onclick="removeExp(this)">${trashSVG} Remove</button>
+          </div>
+        </div>`;
+      expList.appendChild(card);
+    });
+  }
+
+  // PROJECTS
+  const projectsGrid = document.getElementById('projectsGrid');
+  if (projectsGrid) {
+    projectsGrid.innerHTML = '';
+    (data.projects || []).forEach(proj => {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.dataset.id = proj.id;
+      const tags   = (proj.stack||'').split(',').filter(Boolean).map(t => `<span class="stack-tag">${t.trim()}</span>`).join('');
+      const ghLink = proj.github_url ? `<a href="${proj.github_url}" target="_blank" class="project-link" title="GitHub">${githubSVG}</a>` : '';
+      card.innerHTML = `
+        <div class="project-header">
+          <span class="project-icon">${proj.emoji||'🚀'}</span>
+          <div class="project-links">${ghLink}</div>
+        </div>
+        <div class="project-title">${proj.name}</div>
+        <div class="project-desc">${proj.description||''}</div>
+        <div class="project-stack">${tags}</div>
+        <div class="card-actions" style="margin-top:1.1rem">
+          <button class="edit-project-btn" onclick="openEditProject(this)">${pencilSVG} Edit</button>
+          <button class="remove-project-btn" onclick="removeProject(this)">${trashSVG} Remove</button>
+        </div>`;
+      projectsGrid.appendChild(card);
+    });
+  }
+
+  // SKILL GROUPS
+  const skillsGrid = document.getElementById('skillsGrid');
+  if (skillsGrid) {
+    skillsGrid.innerHTML = '';
+    (data.skillGroups || []).forEach(group => {
+      const div = document.createElement('div');
+      div.className = 'skill-group';
+      div.dataset.id = group.id;
+      const tagHtml = (group.tags||[]).map(t =>
+        `<span class="skill-tag" data-tag-id="${t.id}">${t.tag} <button class="skill-tag-remove" onclick="removeSkillTag(this)">✕</button></span>`
+      ).join('');
+      div.innerHTML = `
+        <div class="skill-group-header">
+          <div class="skill-group-title">${group.title}</div>
+          <div class="skill-group-actions">
+            <button class="skill-group-btn skill-group-edit" onclick="openEditSkillGroup(this)">${editSVG} Edit</button>
+            <button class="skill-group-btn skill-group-delete" onclick="removeSkillGroup(this)">${trashSmSVG} Remove</button>
+          </div>
+        </div>
+        <div class="skill-tags">${tagHtml}<button class="skill-add-tag" onclick="addSkillTag(this)">+ Add</button></div>`;
+      skillsGrid.appendChild(div);
+    });
+  }
+
+  // ROADMAP PROGRESS
+  (data.roadmapProgress || []).forEach(row => {
+    if (row.status === 'done') dayStatus[row.day] = 'done';
+  });
+  syncTaskCheckboxesFromDayStatus();
+  buildDayTracker();
+}
+
+/* Sync task checkboxes to reflect DB-loaded day status */
+function syncTaskCheckboxesFromDayStatus() {
+  const doneDays = Object.keys(dayStatus).filter(d => dayStatus[d] === 'done').map(Number);
+  const allTasks = document.querySelectorAll('.week-tasks li');
+  allTasks.forEach((li, idx) => {
+    const day = idx + 1;
+    const btn = li.querySelector('.task-btn');
+    if (doneDays.includes(day)) {
+      li.classList.add('done-task');
+      li.classList.remove('active-task');
+      if (btn) { btn.textContent = '✅'; btn.title = 'Mark incomplete'; }
+    }
+  });
+  document.querySelectorAll('.phase-content').forEach(updatePhaseProgress);
+}
+
+/* ─── Override functions to also save to DB ─── */
+
+// CERTIFICATIONS
+const _origAddCert = window.addCertification;
+window.addCertification = async function() {
+  const name   = document.getElementById('cName').value.trim();
+  const issuer = document.getElementById('cIssuer').value.trim();
+  const date   = document.getElementById('cDate').value.trim();
+  const url    = document.getElementById('cUrl').value.trim();
+  const emoji  = document.getElementById('cEmoji').value.trim() || '🏅';
+  if (!name) { alert('Please enter a certification name.'); return; }
+
+  const result = await API.post('/api/certifications', {
+    name, issuer, date, url, emoji,
+    file_data: _certUploadData,
+    file_type: _certUploadType,
+    file_name: _certUploadName,
+  });
+
+  if (result && result.cert) {
+    const card = document.createElement('div');
+    card.className = 'cert-card';
+    card.dataset.id = result.cert.id;
+    card.innerHTML = buildCertCardHTML({ name, issuer, date, url, emoji, uploadData: _certUploadData, uploadType: _certUploadType, uploadName: _certUploadName });
+    card._certUploadData = _certUploadData;
+    card._certUploadType = _certUploadType;
+    card._certUploadName = _certUploadName;
+    card._certUrl = url;
+    document.getElementById('certGrid').appendChild(card);
+  }
+
+  ['cName','cIssuer','cDate','cUrl','cEmoji'].forEach(id => document.getElementById(id).value = '');
+  const prev = document.getElementById('certUploadPreview');
+  const fname = document.getElementById('certUploadFilename');
+  if (prev)  { prev.style.display = 'none'; prev.src = ''; }
+  if (fname) { fname.style.display = 'none'; fname.textContent = ''; }
+  document.getElementById('certFileInput').value = '';
+  _certUploadData = null; _certUploadType = null; _certUploadName = '';
+  document.getElementById('addCertModal').classList.remove('active');
+};
+
+const _origSaveEditCert = window.saveEditCert;
+window.saveEditCert = async function() {
+  if (!_editCertCard) return;
+  const id     = _editCertCard.dataset.id;
+  const name   = document.getElementById('ecName').value.trim();
+  const issuer = document.getElementById('ecIssuer').value.trim();
+  const date   = document.getElementById('ecDate').value.trim();
+  const url    = document.getElementById('ecUrl').value.trim();
+  const emoji  = document.getElementById('ecEmoji').value.trim() || '🏅';
+  if (!name) { alert('Please enter a certification name.'); return; }
+
+  if (id) {
+    await API.put(`/api/certifications/${id}`, {
+      name, issuer, date, url, emoji,
+      file_data: _certUploadData || _editCertCard._certUploadData,
+      file_type: _certUploadType || _editCertCard._certUploadType,
+      file_name: _certUploadName || _editCertCard._certUploadName,
+    });
+  }
+
+  _editCertCard.innerHTML = buildCertCardHTML({ name, issuer, date, url, emoji, uploadData: _certUploadData || _editCertCard._certUploadData, uploadType: _certUploadType || _editCertCard._certUploadType, uploadName: _certUploadName || _editCertCard._certUploadName });
+  _editCertCard._certUrl = url;
+  _editCertCard = null;
+  _certUploadData = null; _certUploadType = null; _certUploadName = '';
+  document.getElementById('editCertModal').classList.remove('active');
+};
+
+const _origRemoveCert = window.removeCert;
+window.removeCert = async function(btn) {
+  const card = btn.closest('.cert-card');
+  const id = card.dataset.id;
+  if (id) await API.del(`/api/certifications/${id}`);
+  card.style.transition = 'opacity 0.3s, transform 0.3s';
+  card.style.opacity = '0'; card.style.transform = 'scale(0.95)';
+  setTimeout(() => card.remove(), 300);
+};
+
+// EXPERIENCE
+const _origAddExp = window.addExp;
+window.addExp = async function() {
+  const role    = document.getElementById('eRole').value.trim();
+  if (!role) { alert('Please enter a job title.'); return; }
+  const company = document.getElementById('eCompany').value.trim();
+  const period  = document.getElementById('ePeriod').value.trim();
+  const desc    = document.getElementById('eDesc').value.trim();
+  const tags    = document.getElementById('eTags').value.trim();
+
+  const result = await API.post('/api/experience', { role, company, period, description: desc, tags });
+  const tagHtml = tags ? tags.split(',').map(t => `<span class="exp-tag">${t.trim()}</span>`).join('') : '';
+  const card = document.createElement('div');
+  card.className = 'exp-card';
+  if (result && result.exp) card.dataset.id = result.exp.id;
+  card.innerHTML = `
+    <div class="exp-header">
+      <div class="exp-role">${role}</div>
+      ${period ? `<span class="exp-period">${period}</span>` : ''}
+    </div>
+    ${company ? `<div class="exp-company">${company}</div>` : ''}
+    ${desc    ? `<div class="exp-desc">${desc}</div>` : ''}
+    <div class="exp-footer"><div class="exp-tags">${tagHtml}</div>
+      <div class="card-actions">
+        <button class="edit-exp-btn" onclick="openEditExp(this)">${pencilSVG} Edit</button>
+        <button class="remove-exp-btn" onclick="removeExp(this)">${trashSVG} Remove</button>
+      </div></div>`;
+  document.getElementById('expList').appendChild(card);
+  ['eRole','eCompany','ePeriod','eDesc','eTags'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('addExpModal').classList.remove('active');
+};
+
+window.saveEditExp = async function() {
+  if (!_editExpCard) return;
+  const id   = _editExpCard.dataset.id;
+  const role = document.getElementById('eeRole').value.trim();
+  if (!role) { alert('Please enter a job title.'); return; }
+  const company = document.getElementById('eeCompany').value.trim();
+  const period  = document.getElementById('eePeriod').value.trim();
+  const desc    = document.getElementById('eeDesc').value.trim();
+  const tags    = document.getElementById('eeTags').value.trim();
+
+  if (id) await API.put(`/api/experience/${id}`, { role, company, period, description: desc, tags });
+
+  const tagHtml = tags ? tags.split(',').map(t => `<span class="exp-tag">${t.trim()}</span>`).join('') : '';
+  _editExpCard.innerHTML = `
+    <div class="exp-header"><div class="exp-role">${role}</div>${period ? `<span class="exp-period">${period}</span>` : ''}</div>
+    ${company ? `<div class="exp-company">${company}</div>` : ''}
+    ${desc    ? `<div class="exp-desc">${desc}</div>` : ''}
+    <div class="exp-footer"><div class="exp-tags">${tagHtml}</div>
+      <div class="card-actions">
+        <button class="edit-exp-btn" onclick="openEditExp(this)">${pencilSVG} Edit</button>
+        <button class="remove-exp-btn" onclick="removeExp(this)">${trashSVG} Remove</button>
+      </div></div>`;
+  _editExpCard = null;
+  document.getElementById('editExpModal').classList.remove('active');
+};
+
+window.removeExp = async function(btn) {
+  const card = btn.closest('.exp-card');
+  const id = card.dataset.id;
+  if (id) await API.del(`/api/experience/${id}`);
+  card.style.transition = 'opacity 0.3s, transform 0.3s';
+  card.style.opacity = '0'; card.style.transform = 'translateX(-12px)';
+  setTimeout(() => card.remove(), 300);
+};
+
+// PROJECTS
+window.addProject = async function() {
+  const name = document.getElementById('pName').value.trim();
+  if (!name) { alert('Please enter a project name.'); return; }
+  const desc   = document.getElementById('pDesc').value.trim();
+  const github = document.getElementById('pGithub').value.trim();
+  const stack  = document.getElementById('pStack').value.trim();
+  const emoji  = document.getElementById('pEmoji').value.trim() || '🚀';
+
+  const result = await API.post('/api/projects', { name, description: desc, github_url: github, stack, emoji });
+  const tags   = stack ? stack.split(',').map(t => `<span class="stack-tag">${t.trim()}</span>`).join('') : '';
+  const ghLink = github ? `<a href="${github}" target="_blank" class="project-link" title="GitHub">${githubSVG}</a>` : '';
+  const card = document.createElement('div');
+  card.className = 'project-card';
+  if (result && result.project) card.dataset.id = result.project.id;
+  card.innerHTML = `
+    <div class="project-header"><span class="project-icon">${emoji}</span><div class="project-links">${ghLink}</div></div>
+    <div class="project-title">${name}</div>
+    <div class="project-desc">${desc || 'No description provided.'}</div>
+    <div class="project-stack">${tags}</div>
+    <div class="card-actions" style="margin-top:1.1rem">
+      <button class="edit-project-btn" onclick="openEditProject(this)">${pencilSVG} Edit</button>
+      <button class="remove-project-btn" onclick="removeProject(this)">${trashSVG} Remove</button>
+    </div>`;
+  document.getElementById('projectsGrid').appendChild(card);
+  ['pName','pDesc','pGithub','pStack','pEmoji'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('addModal').classList.remove('active');
+};
+
+window.saveEditProject = async function() {
+  if (!_editProjectCard) return;
+  const id   = _editProjectCard.dataset.id;
+  const name = document.getElementById('epName').value.trim();
+  if (!name) { alert('Please enter a project name.'); return; }
+  const desc   = document.getElementById('epDesc').value.trim();
+  const github = document.getElementById('epGithub').value.trim();
+  const stack  = document.getElementById('epStack').value.trim();
+  const emoji  = document.getElementById('epEmoji').value.trim() || '🚀';
+
+  if (id) await API.put(`/api/projects/${id}`, { name, description: desc, github_url: github, stack, emoji });
+
+  const tags   = stack ? stack.split(',').map(t => `<span class="stack-tag">${t.trim()}</span>`).join('') : '';
+  const ghLink = github ? `<a href="${github}" target="_blank" class="project-link" title="GitHub">${githubSVG}</a>` : '';
+  _editProjectCard.innerHTML = `
+    <div class="project-header"><span class="project-icon">${emoji}</span><div class="project-links">${ghLink}</div></div>
+    <div class="project-title">${name}</div>
+    <div class="project-desc">${desc || 'No description provided.'}</div>
+    <div class="project-stack">${tags}</div>
+    <div class="card-actions" style="margin-top:1.1rem">
+      <button class="edit-project-btn" onclick="openEditProject(this)">${pencilSVG} Edit</button>
+      <button class="remove-project-btn" onclick="removeProject(this)">${trashSVG} Remove</button>
+    </div>`;
+  _editProjectCard = null;
+  document.getElementById('editProjectModal').classList.remove('active');
+};
+
+window.removeProject = async function(btn) {
+  const card = btn.closest('.project-card');
+  const id = card.dataset.id;
+  if (id) await API.del(`/api/projects/${id}`);
+  card.style.transition = 'opacity 0.3s, transform 0.3s';
+  card.style.opacity = '0'; card.style.transform = 'scale(0.95)';
+  setTimeout(() => card.remove(), 300);
+};
+
+// SKILLS — save tag additions/removals to DB
+const _origRemoveSkillTag = window.removeSkillTag;
+window.removeSkillTag = async function(btn) {
+  const tag = btn.closest('.skill-tag');
+  const tagId = tag.dataset.tagId;
+  if (tagId) await API.del(`/api/skills/tags/${tagId}`);
+  tag.style.transition = 'opacity 0.2s, transform 0.2s';
+  tag.style.opacity = '0'; tag.style.transform = 'scale(0.8)';
+  setTimeout(() => tag.remove(), 200);
+};
+
+const _origAddSkillTag = window.addSkillTag;
+window.addSkillTag = async function(btn) {
+  const name = prompt('Enter skill name:');
+  if (!name || !name.trim()) return;
+  const group   = btn.closest('.skill-group');
+  const groupId = group.dataset.id;
+  const result  = groupId ? await API.post('/api/skills/tags', { group_id: groupId, tag: name.trim() }) : null;
+  const tagsContainer = btn.closest('.skill-tags');
+  const tagSpan = document.createElement('span');
+  tagSpan.className = 'skill-tag';
+  if (result && result.tag) tagSpan.dataset.tagId = result.tag.id;
+  tagSpan.innerHTML = `${name.trim()} <button class="skill-tag-remove" onclick="removeSkillTag(this)">✕</button>`;
+  tagsContainer.insertBefore(tagSpan, btn);
+};
+
+const _origRemoveSkillGroup = window.removeSkillGroup;
+window.removeSkillGroup = async function(btn) {
+  const group = btn.closest('.skill-group');
+  const id    = group.dataset.id;
+  if (id) await API.del(`/api/skills/groups/${id}`);
+  group.style.transition = 'opacity 0.3s, transform 0.3s';
+  group.style.opacity = '0'; group.style.transform = 'scale(0.95)';
+  setTimeout(() => group.remove(), 300);
+};
+
+const _origSaveEditSkillGroup = window.saveEditSkillGroup;
+window.saveEditSkillGroup = async function() {
+  if (!_editSkillGroup) return;
+  const name = document.getElementById('sgEditName').value.trim();
+  if (!name) { alert('Please enter a category name.'); return; }
+  const id = _editSkillGroup.dataset.id;
+  if (id) await API.put(`/api/skills/groups/${id}`, { title: name });
+  _editSkillGroup.querySelector('.skill-group-title').textContent = name;
+  _editSkillGroup = null;
+  document.getElementById('editSkillGroupModal').classList.remove('active');
+};
+
+const _origAddSkillGroup = window.addSkillGroup;
+window.addSkillGroup = async function() {
+  const name   = document.getElementById('sgName').value.trim();
+  const skills = document.getElementById('sgSkills').value.trim();
+  if (!name) { alert('Please enter a category name.'); return; }
+
+  const result = await API.post('/api/skills/groups', { title: name });
+  const groupId = result && result.group ? result.group.id : null;
+
+  // Add tags to DB
+  const tagObjects = [];
+  if (skills) {
+    for (const s of skills.split(',')) {
+      const tag = s.trim();
+      if (tag) {
+        const tr = groupId ? await API.post('/api/skills/tags', { group_id: groupId, tag }) : null;
+        tagObjects.push({ tag, id: tr && tr.tag ? tr.tag.id : null });
+      }
+    }
+  }
+
+  const tagHtml = tagObjects.map(t =>
+    `<span class="skill-tag" ${t.id ? `data-tag-id="${t.id}"` : ''}>${t.tag} <button class="skill-tag-remove" onclick="removeSkillTag(this)">✕</button></span>`
+  ).join('');
+
+  const group = document.createElement('div');
+  group.className = 'skill-group';
+  if (groupId) group.dataset.id = groupId;
+  group.innerHTML = `
+    <div class="skill-group-header">
+      <div class="skill-group-title">${name}</div>
+      <div class="skill-group-actions">
+        <button class="skill-group-btn skill-group-edit" onclick="openEditSkillGroup(this)">${editSVG} Edit</button>
+        <button class="skill-group-btn skill-group-delete" onclick="removeSkillGroup(this)">${trashSmSVG} Remove</button>
+      </div>
+    </div>
+    <div class="skill-tags">${tagHtml}<button class="skill-add-tag" onclick="addSkillTag(this)">+ Add</button></div>`;
+  document.getElementById('skillsGrid').appendChild(group);
+  ['sgName','sgSkills'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('addSkillGroupModal').classList.remove('active');
+};
+
+// ROADMAP — save day toggle to DB
+window.toggleTask = function(li) {
+  if (!document.body.classList.contains('edit-mode')) return;
+  const btn = li.querySelector('.task-btn');
+  const allTasks = Array.from(document.querySelectorAll('.week-tasks li'));
+  const taskIdx  = allTasks.indexOf(li);
+  const day      = taskIdx + 1;
+
+  if (li.classList.contains('done-task')) {
+    li.classList.remove('done-task');
+    btn.textContent = '⬜'; btn.title = 'Mark complete';
+    delete dayStatus[day];
+    API.post('/api/roadmap/day', { day, status: 'pending' });
+  } else {
+    li.classList.remove('active-task');
+    li.classList.add('done-task');
+    btn.textContent = '✅'; btn.title = 'Mark incomplete';
+    dayStatus[day] = 'done';
+    API.post('/api/roadmap/day', { day, status: 'done' });
+  }
+  updatePhaseProgress(li.closest('.phase-content'));
+  buildDayTracker();
+};
+
+/* ─── Init: load DB data on page ready ─── */
+
+
+
+/* ═══════════════════════════════════════════════════
+   SAVE TO FILE — bakes current data into index.html
+   Downloads updated file ready to push to GitHub
+   ═══════════════════════════════════════════════════ */
+async function saveToFile() {
+  const btn = document.getElementById('saveFileBtn');
+  const origHTML = btn.innerHTML;
+  btn.innerHTML = '⏳ Saving...';
+  btn.disabled = true;
+
+  try {
+    // Get current data from localStorage
+    const data = getAllData();
+
+    // Get the current page HTML directly from the DOM (no fetch needed)
+    let pageHTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+    // Inject saved data into DEFAULTS so GitHub Pages shows YOUR data
+    // Replace the DEFAULTS object with current localStorage data
+    const savedDataScript = `<script id="portfolioSavedData">
+/* AUTO-SAVED DATA — updated by Save to File button */
+(function() {
+  try {
+    var d = ${JSON.stringify(data)};
+    if (d.certifications)  localStorage.setItem('certs',       JSON.stringify(d.certifications));
+    if (d.experience)      localStorage.setItem('exp',         JSON.stringify(d.experience));
+    if (d.projects)        localStorage.setItem('projects',    JSON.stringify(d.projects));
+    if (d.skillGroups)     localStorage.setItem('skillGroups', JSON.stringify(d.skillGroups));
+    if (d.roadmapProgress) localStorage.setItem('roadmap',     JSON.stringify(d.roadmapProgress));
+  } catch(e) {}
+})();
+<\/script>`;
+
+    // Remove old savedData script if exists, then add fresh one
+    pageHTML = pageHTML.replace(/<script id="portfolioSavedData">[\s\S]*?<\/script>\s*/g, '');
+    pageHTML = pageHTML.replace('</head>', savedDataScript + '\n</head>');
+
+    // Download
+    const blob = new Blob([pageHTML], { type: 'text/html;charset=utf-8' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url; a.download = 'index.html';
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    btn.innerHTML = '✅ Done! Replace index.html → git push';
+    setTimeout(() => { btn.innerHTML = origHTML; btn.disabled = false; }, 3000);
+
+  } catch(e) {
+    console.error('Save failed:', e);
+    btn.innerHTML = '❌ Error — try again';
+    btn.disabled = false;
+    setTimeout(() => { btn.innerHTML = origHTML; }, 2500);
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   SINGLE INIT — runs after all functions are defined
+   ═══════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', async () => {
+
+  // 1. Scroll reveal animation
+  document.documentElement.classList.add('js-ready');
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+    });
+  }, { threshold: 0.05 });
+  reveals.forEach(r => revealObserver.observe(r));
+
+  // 2. Init cert upload zones
+  initCertUpload();
+  initEditCertUpload();
+
+  // 3. Load all data from localStorage (or backend if running)
+  await loadAllFromDB();
+
+  // 4. Build phase progress bars + day tracker
+  document.querySelectorAll('.phase-content').forEach(updatePhaseProgress);
+  buildDayTracker();
+
+});
+
+</script>
+</body>
+</html>
