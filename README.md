@@ -20,4 +20,4 @@
 3. Live at https://yourname.vercel.app
 
 ## Admin
-Password: Tamil@2025
+
